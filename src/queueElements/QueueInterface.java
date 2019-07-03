@@ -3,6 +3,8 @@ package queueElements;
 import exceptions.*;
 
 public interface QueueInterface<T> {
+	
+	public void add(T element);
 
 	/**
 	 * removes the first item from the queue

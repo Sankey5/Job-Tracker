@@ -2,22 +2,30 @@ package queueElements;
 
 import exceptions.*;
 
-public class PriorityQueue<T> implements QueueInterface<T>{
+public class DoubleLinkedPriorityQueue<T> implements QueueInterface<T>{
 	private int count;
-	private LinearNode<T> first, last;
-	private int modCount;
+	private DoubleLinkedNode<T> first, last;
 	
-	public PriorityQueue() {
+	public DoubleLinkedPriorityQueue() {
 		count = 0;
 		first = last = null;
-		modCount = 0;
 	}
 	
-	public PriorityQueue(T element) {
-		LinearNode<T> node = new LinearNode(element);
+	public DoubleLinkedPriorityQueue(T element) {
+		DoubleLinkedNode<T> node = new DoubleLinkedNode(element);
 		count = 1;
 		first = last = node;
-		modCount = 0;
+	}
+	
+	@Override
+	public void add(T element) {
+		DoubleLinkedNode<T> newElement = new DoubleLinkedNode<T>(element);
+		
+		while(newElement.getNext() != last) {
+			
+		}
+		
+		count++;
 	}
 	
 	@Override
@@ -29,7 +37,6 @@ public class PriorityQueue<T> implements QueueInterface<T>{
 		first = first.getNext();
 		
 		count--;
-		modCount++;
 		
 		return result;
 	}
@@ -41,8 +48,8 @@ public class PriorityQueue<T> implements QueueInterface<T>{
 			throw new CollectionException("LinkedList");
 		
 		boolean found = false;
-		LinearNode<T> previous = null;
-		LinearNode<T> current = first;
+		DoubleLinkedNode<T> previous = null;
+		DoubleLinkedNode<T> current = first;
 		
 		while(current!=null && !found) 
 			if(targetElement.equals(current.getElement()))
@@ -66,7 +73,6 @@ public class PriorityQueue<T> implements QueueInterface<T>{
 			previous.setNext(current.getNext());
 		
 		count--;
-		modCount++;
 		
 		return current.getElement();
 	}
@@ -80,8 +86,8 @@ public class PriorityQueue<T> implements QueueInterface<T>{
 			throw new CollectionException("Unordered List");
 		
 		boolean checker = false;
-		LinearNode<T> previous = null;
-		LinearNode<T> current = first;
+		DoubleLinkedNode<T> previous = null;
+		DoubleLinkedNode<T> current = first;
 		
 		while(checker != true && current != null) {
 			if(current.getElement().equals(target))
@@ -110,7 +116,7 @@ public class PriorityQueue<T> implements QueueInterface<T>{
 	public String toString() throws CollectionException {
 		if(isEmpty())
 			throw new CollectionException("Unordered List");
-		LinearNode<T> temp = first;
+		DoubleLinkedNode<T> temp = first;
 		String content = "";
 		int i = 0;
 		do {
