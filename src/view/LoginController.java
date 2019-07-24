@@ -23,12 +23,12 @@ public class LoginController implements Initializable {
     void enterAction(ActionEvent event) throws IOException {
 		
 		System.out.print(usernameTextField.getText());
+		if (usernameTextField.getText().equals("Admin")) {
+			MainController.switchView(MainController.VIEW_1);
+		}
 		
-			SkeletonController.switchView(SkeletonController.VIEW_1);
-		
-		
-		if (usernameTextField.getText() == "Tech") {
-			SkeletonController.switchView(SkeletonController.VIEW_2);
+		if (usernameTextField.getText().equals("Tech")) {
+			MainController.switchView(MainController.VIEW_2);
 		}
 		
 		

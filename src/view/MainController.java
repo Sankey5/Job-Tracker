@@ -11,31 +11,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import launcher.Launcher2;
 
-public class SkeletonController implements Initializable {
+public class MainController implements Initializable {
 	public static final int VIEW_1 = 1;
 	public static final int VIEW_2 = 2;
 	public static final int VIEW_3 = 3; 
 	
 	private static BorderPane rootPane;
 	
-	public SkeletonController() {
+	public MainController() {
 	}
 	
 	public void setRootPane(BorderPane rootPane) {
-		SkeletonController.rootPane = rootPane;
+		MainController.rootPane = rootPane;
 	}
 
 
 	@FXML
-	public MenuItem logoutItem;
-	void logoutAction(ActionEvent event) {
-		switchView(VIEW_3);
-	}
+	public Button logoutButton;
 	
+	@FXML
+	void logoutAction(ActionEvent event) {
+			switchView(VIEW_3);
+		}
 	
 	public static void switchView(int viewType) {
 		try {
