@@ -113,6 +113,7 @@ public class DoubleLinkedPriorityQueue<T> implements QueueInterface<T>{
 		return checker;
 	}
 	
+	@Override
 	public String toString() throws CollectionException {
 		if(isEmpty())
 			throw new CollectionException("Unordered List");

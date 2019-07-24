@@ -47,6 +47,7 @@ public interface QueueInterface<T> {
 	  * Returns a string version of the contents of the queue
 	  * @return a string version of the contents of the queue
 	  */
-	 public String toString();
+	 @Override
+	public String toString();
 	
 }

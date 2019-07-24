@@ -30,6 +30,7 @@ public class DoubleLinkedNode<T> {
 	public DoubleLinkedNode<T> getNext(){return next;}
 	public DoubleLinkedNode<T> getPrevious(){return previous;}
 	
+	@Override
 	public String toString() {
 		return element.toString();
 	}
