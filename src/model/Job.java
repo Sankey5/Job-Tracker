@@ -1,28 +1,52 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Job {
+public class Job implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// determines position in priority queue
 	private LocalDate deadlineEntry;
-	private String customerCompanyName;
-	private String customerName;
-	private int customerPhoneNumber;
-	private String equipmentMake;
-	private String equipmentModel;
-	private String equipmentSerial;
-	private String customerEmail;
+	private Customer customer;
+	private Equipment equipment;
 	
-	public Job(LocalDate deadlineEntry, String customerCompanyName, String customerName, int customerPhoneNumber,
-			String equipmentMake, String equipmentModel, String equipmentSerial, String customerEmail) {
-		super();
+	/**@author Kenny
+	 * 
+	 * @param customer - customer who requested the job
+	 * @param equipment - tooling required for completing the job
+	 * @param deadlineEntry - deadline for the job
+	 */
+	public Job(Customer customer, Equipment equipment, LocalDate deadlineEntry) {
+		this.customer = customer;
+		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;
-		this.customerCompanyName = customerCompanyName;
-		this.customerName = customerName;
-		this.customerPhoneNumber = customerPhoneNumber;
-		this.equipmentMake = equipmentMake;
-		this.equipmentModel = equipmentModel;
-		this.equipmentSerial = equipmentSerial;
-		this.customerEmail = customerEmail;
+	}
+
+	public LocalDate getDeadlineEntry() {
+		return deadlineEntry;
+	}
+
+	public void setDeadlineEntry(LocalDate deadlineEntry) {
+		this.deadlineEntry = deadlineEntry;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Equipment getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
 	
 	
