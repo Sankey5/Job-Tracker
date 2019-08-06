@@ -17,9 +17,8 @@ import javafx.scene.layout.BorderPane;
 import launcher.Launcher2;
 
 public class MainController implements Initializable {
-	public static final int VIEW_1 = 1;
-	public static final int VIEW_2 = 2;
-	public static final int VIEW_3 = 3; 
+	
+	private ViewType view;
 	
 	private static BorderPane rootPane;
 	
@@ -36,22 +35,22 @@ public class MainController implements Initializable {
 	
 	@FXML
 	void logoutAction(ActionEvent event) {
-			switchView(VIEW_3);
+			switchView(ViewType.Login);
 		}
 	
-	public static void switchView(int viewType) {
+	public static void switchView(ViewType viewType) {
 		try {
 			FXMLLoader loader = null;
 			switch(viewType) {
-				case VIEW_1:
+				case Admin:
 					loader = new FXMLLoader(Launcher2.class.getResource("/view/AdminMainView.fxml"));
 					loader.setController(new AdminController());
 					break;
-				case VIEW_2:
+				case Technician:
 					loader = new FXMLLoader(Launcher2.class.getResource("/view/TechMainView.fxml"));
-					loader.setController(new TechController());
+					loader.setController(new TechnicianController());
 					break;
-				case VIEW_3:
+				case Login:
 					loader = new FXMLLoader(Launcher2.class.getResource("/view/LoginView.fxml"));
 					loader.setController(new LoginController());
 					break;
