@@ -63,7 +63,7 @@
                            <children>
                               <DatePicker fx:id="startDatePicker" promptText="Start" showWeekNumbers="true" />
                               <DatePicker fx:id="endDatePicker" promptText="End" />
-                              <Button fx:id="updateButton" mnemonicParsing="false" text="Update" />
+                              <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateDateSelection" text="Update" />
                            </children>
                         </VBox>
                         <ListView fx:id="availableJobsListView" prefHeight="163.0" prefWidth="389.0" />
