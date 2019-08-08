@@ -1,4 +1,4 @@
-package model;
+package temporaryDelete;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,8 +28,12 @@ public class CustomerManager {
 				scanner = new Scanner(file);
 				while(scanner.hasNextLine()) {
 					String line = scanner.nextLine();
-					String[] tokens = line.split(",");
-					updatedCustomers.add(Customer.generateFromTokens(tokens));
+					String[] tokenArray = line.split(",");
+					ArrayList<String> tokens = new ArrayList<String>();
+					for(String token : tokenArray) {
+						tokens.add(token);
+					}
+					updatedCustomers.add(Customer.generateFromTokenList(tokens));
 				}
 				this.setCustomers(updatedCustomers);
 			}
