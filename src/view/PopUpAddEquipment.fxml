@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane prefHeight="300.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="20.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="makeTextField" promptText="Make" />
+                  <TextField fx:id="modelTextField" promptText="Model" />
+                  <TextField fx:id="serialTextField" promptText="Serial#" />
+               </children>
+               <BorderPane.margin>
+                  <Insets top="100.0" />
+               </BorderPane.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#handle" text="Add Equipment" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="100.0" top="70.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
+   <top>
+      <Label alignment="CENTER" prefHeight="75.0" prefWidth="477.0" text="Please enter the make, model, and serial number for your new equipment" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="40.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>
