@@ -6,12 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.MainController;
+import view.ViewType;
 
 public class Launcher2 extends Application{
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		launch(args);
-	}*/
+	}
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -24,7 +25,7 @@ public class Launcher2 extends Application{
 			BorderPane borderPane = (BorderPane) loader.load();
 			controller.setRootPane(borderPane);
 			Scene scene = new Scene(borderPane);
-			MainController.switchView(3);
+			MainController.switchView(ViewType.Login);
 			
 			stage.setTitle("Job Queue");
 			stage.setScene(scene);

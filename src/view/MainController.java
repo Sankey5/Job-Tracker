@@ -68,20 +68,6 @@ public class MainController implements Initializable {
 		}
 	}
 	
-	@FXML
-    void doSwitchView1(ActionEvent event) {
-		switchView(VIEW_1);
-    }
-
-    @FXML
-    void doSwitchView2(ActionEvent event) {
-		switchView(VIEW_2);
-    }
-    
-    @FXML
-    void doSwitchView3(ActionEvent event) {
-		switchView(VIEW_3);
-    }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
