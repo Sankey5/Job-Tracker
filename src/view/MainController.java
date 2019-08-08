@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import launcher.Launcher;
 import launcher.Launcher2;
 
 /**
@@ -48,41 +50,28 @@ public class MainController implements Initializable {
 			FXMLLoader loader = null;
 			switch(viewType) {
 				case Admin:
-					loader = new FXMLLoader(Launcher2.class.getResource("/view/AdminMainView.fxml"));
+					loader = new FXMLLoader(Launcher.class.getResource("/view/AdminMainView.fxml"));
 					loader.setController(new AdminController());
 					break;
 				case Technician:
-					loader = new FXMLLoader(Launcher2.class.getResource("/view/TechMainView.fxml"));
+					loader = new FXMLLoader(Launcher.class.getResource("/view/TechMainView.fxml"));
 					loader.setController(new TechnicianController());
 					break;
 				case Login:
-					loader = new FXMLLoader(Launcher2.class.getResource("/view/LoginView.fxml"));
+					loader = new FXMLLoader(Launcher.class.getResource("/view/LoginView.fxml"));
 					loader.setController(new LoginController());
+		//			Launcher.stage.setScene(new Scene(loader.load()));
 					break;
 					
 			}
 			Parent view = loader.load();
 			rootPane.setCenter(view);
+			Launcher.stage.sizeToScene();
+		//	Launcher.stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	@FXML
-    void doSwitchView1(ActionEvent event) {
-		switchView(VIEW_1);
-    }
-
-    @FXML
-    void doSwitchView2(ActionEvent event) {
-		switchView(VIEW_2);
-    }
-    
-    @FXML
-    void doSwitchView3(ActionEvent event) {
-		switchView(VIEW_3);
-    }
-    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

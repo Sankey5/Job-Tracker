@@ -13,14 +13,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import temporaryDelete.JobManager;
-
 public class Database {
 	private static Database database;
 	private static String customerFileName, equipmentFileName, jobFileName, technicianFileName;
-//	private CustomerManager customerManager;
-//	private EquipmentManager equipmentManager;
-//	private JobManager jobManager;
 	private ArrayList<Technician> technicians;
 	private ArrayList<Customer> customers;
 	private ArrayList<Job> jobs;

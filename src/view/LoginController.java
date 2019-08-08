@@ -24,11 +24,11 @@ public class LoginController implements Initializable {
 		
 		System.out.print(usernameTextField.getText());
 		if (usernameTextField.getText().equals("Admin")) {
-			MainController.switchView(MainController.VIEW_1);
+			MainController.switchView(ViewType.Admin);
 		}
 		
 		if (usernameTextField.getText().equals("Tech")) {
-			MainController.switchView(MainController.VIEW_2);
+			MainController.switchView(ViewType.Technician);
 		}
 		
 		
