@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import temporaryDelete.JobManager;
 
@@ -23,15 +25,17 @@ public class Database {
 	private ArrayList<Customer> customers;
 	private ArrayList<Job> jobs;
 	private ArrayList<Equipment> equipment;
+	private Logger logger;
 	
 	private Database() {
+		logger = Logger.getLogger(this.getClass().getName());
 		setDefaultFileNames();
 		this.technicians = new ArrayList<Technician>();
 		this.customers = new ArrayList<Customer>();
 		this.jobs = new ArrayList<Job>();
 		this.equipment = new ArrayList<Equipment>();
 		
-		//Test case
+		/*Test case
 		Technician tech = new Technician();
 		tech.setName("bob smith");
 		Customer customer = new Customer("Big corp", "Bill gates", 3, "@me");
@@ -46,15 +50,13 @@ public class Database {
 		}
 		technicians.add(tech);
 		saveTechnicians();
-		// end test case
+		end test case */
 		loadDatabase();
-		
-	//	updateDatabase();
-		
 	}
 
 	/**
 	 * A Singleton implemented database. This ensures there is only ever one instance of the database
+	 * 
 	 * @return
 	 */
 	public static Database getInstance() {
@@ -63,33 +65,24 @@ public class Database {
 		}
 		return database;
 	}
+	
 	public void loadDatabase() {
 		loadTechnicians();
 		loadCustomers();
 		loadEquipment();
 		loadJobs();
 	}
+	/**
+	 * Simple default file names
+	 * TODO: Load these in from a settings file
+	 */
 	public void setDefaultFileNames() {
 		customerFileName = "src/data/customers";
 		equipmentFileName = "src/data/equipment";
 		jobFileName = "src/data/jobs";
 		technicianFileName = "src/data/technicians";
 	}
-	/*
-	public void updateDatabase() {
-		this.customerManager = new CustomerManager();
-		this.customerManager.setCustomerFileName(customerFileName);
-		this.customerManager.updateCustomers();
-		
-		this.equipmentManager = new EquipmentManager();
-		this.equipmentManager.setEquipmentFileName(equipmentFileName);
-		this.equipmentManager.updateEquipment();
-		
-		this.jobManager = new JobManager();
-		this.jobManager.setJobFileName(jobFileName);
-		this.jobManager.updateJobs();
-	}*/
-	
+
 	public void loadTechnicians() {
 		try {
 			FileInputStream file = new FileInputStream(technicianFileName);
@@ -98,7 +91,8 @@ public class Database {
 			file.close();
 			objIn.close();
 		} catch (FileNotFoundException e) {
-			System.out.print("Expected tech\n");
+			logger.log(Level.WARNING, "Technician file not found, one is being created in the default file name: "
+					+ technicianFileName);
 			saveTechnicians();
 		}
 		catch (IOException e) { 
@@ -118,8 +112,8 @@ public class Database {
 			file.close();
 			objOut.close();
 		} catch (FileNotFoundException e) {
-			// TODO prompt user to specify file
-			System.out.print("unexpected\n");
+			logger.log(Level.SEVERE, "Technician file could not be created default file name: "
+					+ technicianFileName);
 			e.printStackTrace();
 		}
 		catch (IOException e) { 
@@ -135,7 +129,8 @@ public class Database {
 			file.close();
 			objIn.close();
 		} catch (FileNotFoundException e) {
-			System.out.print("Expected\n");
+			logger.log(Level.WARNING, "Customer file not found, one is being created in the default file name: "
+					+ customerFileName);
 			saveCustomers();
 		}
 		catch (IOException e) { 
@@ -154,7 +149,8 @@ public class Database {
 			file.close();
 			objOut.close();
 		} catch (FileNotFoundException e) {
-			// TODO prompt user to specify file
+			logger.log(Level.WARNING, "Customers could not be created with default file name: "
+					+ customerFileName);
 			e.printStackTrace();
 		}
 		catch (IOException e) { 
@@ -170,7 +166,8 @@ public class Database {
 			file.close();
 			objIn.close();
 		} catch (FileNotFoundException e) {
-			System.out.print("Equip\n");
+			logger.log(Level.WARNING, "Equipment file not found, one is being created in the default file name: "
+					+ equipmentFileName);
 			saveEquipment();
 		}
 		catch (IOException e) { 
@@ -189,7 +186,8 @@ public class Database {
 			file.close();
 			objOut.close();
 		} catch (FileNotFoundException e) {
-			// TODO prompt user to specify file
+			logger.log(Level.SEVERE, "Equipment could not be created with default file name: "
+					+ equipmentFileName);
 			e.printStackTrace();
 		}
 		catch (IOException e) { 
@@ -206,7 +204,8 @@ public class Database {
 			file.close();
 			objIn.close();
 		} catch (FileNotFoundException e) {
-			System.out.print("Jons\n");
+			logger.log(Level.WARNING, "Job file not found, one is being created in the default file name: "
+					+ jobFileName);
 			saveJobs();
 		}
 		catch (IOException e) { 
@@ -225,7 +224,8 @@ public class Database {
 			file.close();
 			objOut.close();
 		} catch (FileNotFoundException e) {
-			// TODO prompt user to specify file
+			logger.log(Level.SEVERE, "Job could not be created with default file name: "
+					+ jobFileName);
 			e.printStackTrace();
 		}
 		catch (IOException e) { 

@@ -17,14 +17,7 @@ public class Equipment implements Serializable {
 		this.equipmentModel = equipmentModel;
 		this.equipmentSerial = equipmentSerial;
 	}
-	
-	public static Equipment generateFromTokens(String[] tokens) {
-		// TODO: Unit test that all are valid fields
-		return new Equipment(tokens[0], tokens[1], tokens[2]);
-	}
-	public static Equipment generateFromTokenList(ArrayList<String> tokens) {
-		return new Equipment(tokens.get(0), tokens.get(1), tokens.get(2));
-	}
+
 	public String getEquipmentMake() {
 		return equipmentMake;
 	}
@@ -42,11 +35,6 @@ public class Equipment implements Serializable {
 	}
 	public void setEquipmentSerial(String equipmentSerial) {
 		this.equipmentSerial = equipmentSerial;
-	}
-	
-	public String toSaveFormat() {
-		String ret = this.getEquipmentMake() + "," + this.getEquipmentModel() + "," + this.getEquipmentSerial();
-		return ret;
 	}
 
 	/**

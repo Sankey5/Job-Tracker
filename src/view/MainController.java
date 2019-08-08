@@ -16,6 +16,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import launcher.Launcher2;
 
+/**
+ * This class is the main App skeleton controller that individual views will communicate with to access the database.
+ * @author Kenny
+ *
+ */
 public class MainController implements Initializable {
 	
 	private ViewType view;
