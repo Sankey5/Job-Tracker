@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class TechnicianController implements EventHandler<ActionEvent>, Initializable {
 
@@ -23,7 +24,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private DatePicker startDatePicker, endDatePicker;
 	@FXML
-	private TextField detailsTextArea, extrasTextArea;
+	private TextArea detailsTextArea, extrasTextArea;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

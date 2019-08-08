@@ -72,11 +72,7 @@ public class MainController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
-	
-    
->>>>>>> refs/heads/IW2
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
