@@ -59,4 +59,9 @@ public class Customer implements Serializable {
 				+ String.valueOf(this.getCustomerPhoneNumber()) + "," + this.getCustomerEmail();
 		return ret;
 	}
+	
+	public String toString() {
+		return getCustomerName() + " - #" + getCustomerPhoneNumber() + "\n"
+			 + getCustomerEmail() + getCustomerCompanyName();
+	}
 }

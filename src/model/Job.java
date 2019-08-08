@@ -15,6 +15,8 @@ public class Job implements Serializable{
 	private LocalDate deadlineEntry;
 	private Customer customer;
 	private Equipment equipment;
+	private String details;
+	
 	
 	/**@author Kenny
 	 * 
@@ -26,6 +28,7 @@ public class Job implements Serializable{
 		this.customer = customer;
 		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;
+		this.details = "No additional details.";
 	}
 
 	/**
@@ -62,6 +65,14 @@ public class Job implements Serializable{
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
+	
+	public void setMemo(String memo) {
+		this.details = memo;
+	}
+	
+	public String getMemo() {
+		return this.details;
+	}
 	public String dateToSaveFormat() {
 		return this.deadlineEntry.toString().replace("-", ",");
 	}
@@ -70,4 +81,15 @@ public class Job implements Serializable{
 		return ret;
 	}
 	
+	public String toString() {
+		return this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake();
+	}
+	
+	public String toDescription() {
+		String header = toString() + "\n";
+		String subject = this.customer.toString() + "\n";
+		String body = "Tool needed:" +  this.equipment.toString()
+                    + "\nDetails: " + this.getMemo();
+		return header + subject + body;
+	}
 }

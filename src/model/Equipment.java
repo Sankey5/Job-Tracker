@@ -48,6 +48,10 @@ public class Equipment implements Serializable {
 		String ret = this.getEquipmentMake() + "," + this.getEquipmentModel() + "," + this.getEquipmentSerial();
 		return ret;
 	}
+	
+	public String toString() {
+		return getEquipmentMake() + " - " +  getEquipmentModel() + " @" + getEquipmentSerial();
+	}
 
 	/**
 	 * Compares serial numbers of equipment to determine if potentially different instances
