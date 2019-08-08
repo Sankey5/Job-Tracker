@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="300.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="TOP_CENTER" spacing="20.0">
          <children>
@@ -22,9 +21,10 @@
                </BorderPane.margin>
             </HBox>
             <Button mnemonicParsing="false" onAction="#handle" text="Add Equipment" />
+            <Label fx:id="warningLabel" prefHeight="17.0" prefWidth="470.0" textAlignment="CENTER" />
          </children>
          <BorderPane.margin>
-            <Insets bottom="100.0" top="70.0" />
+            <Insets bottom="50.0" top="30.0" />
          </BorderPane.margin>
       </VBox>
    </center>

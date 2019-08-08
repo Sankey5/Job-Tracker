@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -7,10 +8,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import launcher.Launcher;
 import model.Database;
 
 /**
@@ -35,12 +41,26 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 	
 	
 	
-	
+	public void addMemo() {
+		
+	}
 	
 	/**
 	 * Displays a pop up dialogue box where the user can add equipment to the database of existing equipment.
 	 */
 	public void handleAddEquipment() {
+		try {
+			Stage popupWindow = new Stage();
+			FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/PopUpAddEquipment.fxml"));
+			EquipmentPopupController controller = new EquipmentPopupController();
+			loader.setController(controller);
+			Parent root = loader.load();
+			popupWindow.setScene(new Scene(root));
+			popupWindow.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
