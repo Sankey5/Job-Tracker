@@ -36,6 +36,11 @@ public class Equipment implements Serializable {
 	public void setEquipmentSerial(String equipmentSerial) {
 		this.equipmentSerial = equipmentSerial;
 	}
+	
+	public String toString() {
+		return getEquipmentMake() + " - " +  getEquipmentModel() + " @" + getEquipmentSerial();
+	}
+
 
 	/**
 	 * Compares serial numbers of equipment to determine if potentially different instances

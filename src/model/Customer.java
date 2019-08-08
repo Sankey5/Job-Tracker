@@ -47,4 +47,9 @@ public class Customer implements Serializable {
 	public void setCustomerEmail(String customerEmail) {
 		this.customerEmail = customerEmail;
 	}
+	
+	public String toString() {
+		return getCustomerName() + " - #" + getCustomerPhoneNumber() + "\n"
+			 + getCustomerEmail() + getCustomerCompanyName();
+	}
 }

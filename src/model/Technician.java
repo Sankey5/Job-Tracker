@@ -10,10 +10,19 @@ public class Technician implements Serializable {
 	private ArrayList<Job> myJobs;
 	// List of equipment a technician is proficient with
 	private ArrayList<Equipment> equipmentList;
+	private String id;
+	private String password;
+	private String phoneNumber;
+	private String stats;
+	private String status;
+	private String notice;
 	
 	public Technician() {
 		this.myJobs = new ArrayList<Job>();
 		this.equipmentList = new ArrayList<Equipment>();
+		this.id = this.name;
+		this.password = "";
+		
 	}
 	
 	/**
@@ -70,5 +79,53 @@ public class Technician implements Serializable {
 	}
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getStats() {
+		return stats;
+	}
+
+	public void setStats(String stats) {
+		this.stats = stats;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getNotice() {
+		return notice;
+	}
+
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 }
