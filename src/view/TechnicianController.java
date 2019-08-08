@@ -35,6 +35,11 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		extrasTextArea.setText("Extras go here");
 		
 	}
+	
+	
+	public void logoutAction(ActionEvent event) {
+		MainController.switchView(ViewType.Login);
+	}
 	@Override
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub

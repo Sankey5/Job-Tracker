@@ -21,6 +21,11 @@
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="598.0" spacing="10.0">
                      <children>
+                        <Pane prefHeight="100.0" prefWidth="90.0">
+                           <children>
+                              <Button fx:id="logoutButton" layoutX="-84.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="31.0" prefWidth="149.0" text="Logout" />
+                           </children>
+                        </Pane>
                         <Label text="Techinican Main Page " textFill="#e13535">
                            <font>
                               <Font size="32.0" />
