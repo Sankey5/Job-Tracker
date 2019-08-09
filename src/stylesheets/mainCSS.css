@@ -1,0 +1,12 @@
+*{
+	-fx-base: #6B6B6B;
+	-fx-background-color: #6B6B6B;
+}
+
+.button {
+	-fx-font-size: 16pt;
+	-fx-shape: "M 300 200 L 500 200 L 500 450 L 300 450 L 300 200 ";
+	-fx-background-color: #039BE5;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
