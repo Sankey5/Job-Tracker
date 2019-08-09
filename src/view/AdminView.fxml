@@ -74,7 +74,7 @@
                         <VBox alignment="CENTER" spacing="40.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="130.0" text="Add Equipment" />
-                              <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
+                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">

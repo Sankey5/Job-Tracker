@@ -15,6 +15,6 @@
       </Label>
    </top>
    <center>
-      <ListView fx:id="techListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="techListView" onMouseClicked="#selectTechnician" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
