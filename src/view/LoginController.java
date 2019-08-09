@@ -38,9 +38,9 @@ public class LoginController implements Initializable {
 			MainController.switchView(ViewType.Technician);
 		}
 		
-		if(usernameTextField.getText().equals(loginTech.getName())) {
+/*		if(usernameTextField.getText().equals(loginTech.getName())) {
 			MainController.switchView(ViewType.Technician);
-		}
+		}*/
     }
 
 	@FXML

@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,7 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Customer;
 import model.Database;
 
@@ -78,8 +80,10 @@ public class CustomerPopupController implements Initializable, EventHandler<Acti
 			return;
 		}
 		
-		Customer customer = new Customer(companyName, name, phoneNumber, email);
-		Database.getInstance().getCustomers().add(customer);
+//		Customer customer = new Customer(companyName, name, phoneNumber, email);
+		Database.getInstance().addCustomer(new Customer(companyName, name, phoneNumber, email));
+		Stage thisStage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
+		thisStage.close();
 		
 	}
 

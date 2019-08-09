@@ -61,6 +61,12 @@ public class Database {
 		return database;
 	}
 	
+	
+	
+	// TODO: build this out
+	public void addMemo(String memo) {
+	}
+	
 	public void loadDatabase() {
 		loadTechnicians();
 		loadCustomers();
@@ -228,6 +234,11 @@ public class Database {
         } 
 	}
 
+	
+	public void addCustomer(Customer customer) {
+		this.customers.add(customer);
+	}
+	
 	public ArrayList<Technician> getTechnicians() {
 		return technicians;
 	}

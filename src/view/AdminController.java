@@ -2,9 +2,11 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +19,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import launcher.Launcher;
-import model.Database;
+import model.*;
 
 /**
  * The controller for the admin view.
@@ -27,7 +29,11 @@ import model.Database;
  */
 public class AdminController implements EventHandler<ActionEvent>, Initializable {
 	@FXML
-	private ListView statisticsListView, memoListView, jobsListView;
+	private ListView<Customer> clientListView;
+	@FXML
+	private ListView<Equipment> inventoryListView;
+	@FXML
+	private ListView<Job> jobsListView;
 	@FXML
 	private MenuButton actionMenuButton;
 	@FXML
@@ -41,8 +47,8 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 	
 	
 	
-	public void addMemo() {
-		
+	public void addMemo() {	
+		database.addMemo(memoTextField.getText());
 	}
 	
 	/**
@@ -57,11 +63,35 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 			Parent root = loader.load();
 			popupWindow.setScene(new Scene(root));
 			popupWindow.show();
+			popupWindow.setOnHidden(
+					e-> inventoryListView.itemsProperty().set(
+					FXCollections.observableArrayList(database.getEquipment())));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * Displays a popup window to the user to add a new customer
+	 */
+	public void handleAddCustomer() {
+		try {
+			Stage popupWindow = new Stage();
+			FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/PopUpAddCustomer.fxml"));
+			CustomerPopupController controller = new CustomerPopupController();
+			loader.setController(controller);
+			Parent root = loader.load();
+			popupWindow.setScene(new Scene(root));
+			popupWindow.show();
+			popupWindow.setOnHidden(
+				e-> clientListView.itemsProperty().set(
+				FXCollections.observableArrayList(database.getCustomers())));
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -73,7 +103,10 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		ObservableList<Customer> clients = FXCollections.observableArrayList(database.getCustomers());
+		clientListView.itemsProperty().set(clients);
+		inventoryListView.itemsProperty().set(FXCollections.observableArrayList(database.getEquipment()));
+
 	}
+	
 }
