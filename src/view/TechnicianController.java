@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2019 IBM Corporation and others.
+ *
+ * This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package view;
 
 import java.net.URL;
@@ -72,6 +85,13 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			for (int i = 0; i < database.getJobs().size(); i++) {
 				if(available.equals(database.getJobs().get(i).toString())) {
 					detailsTextArea.setText(database.getJobs().get(i).toDescription());
+				}
+			}	
+			String completed = completedJobsListView.getSelectionModel().getSelectedItem();
+			System.out.println(completed);
+			for (int i = 0; i < tech.getMyJobs().size(); i++) {
+				if(completed.equals(tech.getMyJobs().get(i).toString())) {
+					detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
 				}
 			}	
 	}
