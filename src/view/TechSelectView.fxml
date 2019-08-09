@@ -5,16 +5,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../stylesheets/maincss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <ListView fx:id="techListView" onMouseClicked="#selectTechnician" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="techListView" onMouseClicked="#selectTechnician" prefHeight="200.0" prefWidth="200.0" stylesheets="@../stylesheets/techSelectionCSS.css" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <FlowPane columnHalignment="CENTER" prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="55.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" text="Back" textAlignment="CENTER" />
+                  <Button alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="4.0" mnemonicParsing="false" onAction="#goBack" text="Back" textAlignment="CENTER" />
                </children>
             </Pane>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="167.0" text="Technician Selection">

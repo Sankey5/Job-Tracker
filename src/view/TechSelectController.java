@@ -40,8 +40,8 @@ public class TechSelectController implements Initializable{
 	}
 	
 	@FXML
-    void selectTechnician(MouseEvent event) {
-		if(event.getClickCount() < 2) {
+    private void selectTechnician(MouseEvent event) {
+		if(event.getClickCount() < 2 || techListView.getSelectionModel().isEmpty()) {
 			return;
 		}
 		
@@ -51,7 +51,7 @@ public class TechSelectController implements Initializable{
     }
 	
 	@FXML
-    void goBack(ActionEvent event) {
+    private void goBack(ActionEvent event) {
 		MainController.switchView(ViewType.Login);
     }
 }
