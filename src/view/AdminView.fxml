@@ -46,14 +46,14 @@
                         </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                            <children>
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="218.0" text="Technician Statistics" />
-                              <ListView fx:id="statisticsListView" editable="true" prefHeight="333.0" prefWidth="215.0" />
+                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="218.0" text="Inventory" />
+                              <ListView fx:id="inventoryListView" editable="true" prefHeight="333.0" prefWidth="215.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="350.0" prefWidth="170.0">
                            <children>
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="149.0" text="Memos" />
-                              <ListView fx:id="memoListView" editable="true" prefHeight="333.0" prefWidth="170.0" />
+                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="149.0" text="Clients" />
+                              <ListView fx:id="clientListView" editable="true" prefHeight="333.0" prefWidth="170.0" />
                            </children>
                         </VBox>
                      </children>
@@ -71,7 +71,12 @@
                               </Menu>
                           </items>
                         </MenuButton>
-                        <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="132.0" text="Button" />
+                        <VBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="130.0" text="Add Equipment" />
+                              <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
+                           </children>
+                        </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">
                            <children>
                               <TextField fx:id="memoTextField" />

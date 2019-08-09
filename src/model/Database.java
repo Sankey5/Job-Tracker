@@ -61,6 +61,12 @@ public class Database {
 		return database;
 	}
 	
+	
+	
+	// TODO: build this out
+	public void addMemo(String memo) {
+	}
+	
 	public void loadDatabase() {
 		loadTechnicians();
 		loadCustomers();
