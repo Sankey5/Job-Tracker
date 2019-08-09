@@ -67,14 +67,14 @@ public class Job implements Serializable{
 	}
 	
 	public String toString() {
-		return this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake();
+		return this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake() + "\n";
 	}
 	
 	public String toDescription() {
-		String header = toString() + "\n";
+		String header = toString();
 		String subject = this.customer.toString() + "\n";
-		String body = "Tool needed:" +  this.equipment.toString()
-                    + "\nDetails: " + this.getMemo();
+		String body = "Tools needed: " +  this.equipment.toString()
+                    + "Details: " + this.getMemo();
 		return header + subject + body;
 	}
 

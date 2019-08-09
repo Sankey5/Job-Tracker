@@ -24,7 +24,7 @@ public class Launcher extends Application{
 		Parent root = loader.load();
 		controller.setRootPane((BorderPane) root);
 		Scene scene = new Scene(root);
-		stage.setTitle("Welcome!");
+		stage.setTitle("Welcome! - Job Tracker");
 		stage.setScene(scene);
 		primaryStage.show();
 		controller.switchView(ViewType.Login);

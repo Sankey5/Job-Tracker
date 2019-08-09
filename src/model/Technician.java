@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Technician implements Serializable {
 
@@ -12,7 +15,7 @@ public class Technician implements Serializable {
 	private ArrayList<Equipment> equipmentList;
 	private String id;
 	private String password;
-	private String phoneNumber;
+	private int phoneNumber;
 	private String stats;
 	private String status;
 	private String notice;
@@ -77,6 +80,15 @@ public class Technician implements Serializable {
 	public ArrayList<Job> getMyJobs() {
 		return myJobs;
 	}
+	
+	public List<String> getJobs() {
+		List<String> strings = getMyJobs().stream()
+				   .map(object -> Objects.toString(object, null))
+				   .collect(Collectors.toList());
+		return strings;
+				
+		
+	}
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
 	}
@@ -97,12 +109,12 @@ public class Technician implements Serializable {
 		this.password = password;
 	}
 
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(int i) {
+		this.phoneNumber = i;
 	}
 
 	public String getStats() {
@@ -128,4 +140,15 @@ public class Technician implements Serializable {
 	public void setNotice(String notice) {
 		this.notice = notice;
 	}
+	
+	public String toString() {
+		return getName() + getMyJobs() + getEquipmentList();
+	}
+	
+	public String toExtras() {
+		return "Contact: " + getName() + " - " + getPhoneNumber() + "\nEquipment Registered: \n" 
+				+ getEquipmentList().toString().replaceAll("\\[|, |\\]", "") + "Stats: "+ getStats() + "\nStatus: " + getStatus() + "\nNotices: \n" + getNotice();
+	}
+	
+	
 }
