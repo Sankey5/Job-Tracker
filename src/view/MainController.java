@@ -68,6 +68,15 @@ public class MainController implements Initializable {
 /*public static Database getDatabase() {
 		return database;
 	}*/
+	/*public static void loadTechnician(Technician tech) {
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(Launcher.class.getResource("/view/TechMainView.fxml"));
+			Technician conew technicianController()
+			loader.setController();
+			
+		}
+	}*/
 	public static void switchView(ViewType viewType) {
 		try {
 			FXMLLoader loader = null;

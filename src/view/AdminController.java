@@ -58,7 +58,6 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 			popupWindow.setScene(new Scene(root));
 			popupWindow.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -73,7 +72,14 @@ public class AdminController implements EventHandler<ActionEvent>, Initializable
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		
+=======
+		ObservableList<Customer> clients = FXCollections.observableArrayList(database.getCustomers());
+		clientListView.itemsProperty().set(clients);
+		inventoryListView.itemsProperty().set(FXCollections.observableArrayList(database.getEquipment()));
+		jobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getJobs()));
+>>>>>>> stash
 	}
 }
