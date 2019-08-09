@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Customer;
 import model.Equipment;
@@ -17,8 +18,33 @@ import model.Technician;
 
 public class LoginController implements Initializable {
 	
-
 	public LoginController() throws IOException {
+	}
+	
+	@FXML
+    private Button techButton;
+
+    @FXML
+    private Button adminButton;
+    
+    @FXML
+    void switchAdminView(ActionEvent event) {
+    	MainController.switchView(ViewType.Admin);
+    }
+
+    @FXML
+    void techSelect(ActionEvent event) {
+    	MainController.switchView(ViewType.TechSelect);
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+
+	}
+	
+
+	/*public LoginController() throws IOException {
 	}
 	
 	@FXML
@@ -38,9 +64,9 @@ public class LoginController implements Initializable {
 			MainController.switchView(ViewType.Technician);
 		}
 		
-/*		if(usernameTextField.getText().equals(loginTech.getName())) {
+		if(usernameTextField.getText().equals(loginTech.getName())) {
 			MainController.switchView(ViewType.Technician);
-		}*/
+		}
     }
 
 	@FXML
@@ -50,7 +76,7 @@ public class LoginController implements Initializable {
 		Technician test = new Technician();
 		ArrayList<Job> list = new ArrayList<Job>();
 		test.setName("John");
-		test.setPhoneNumber(123456789);
+		test.setPhoneNumber("123456789");
 		test.setStats("Doing Pretty Well");
 		test.setStatus("New Hire");
 		test.setNotice("Generated from login");
@@ -80,6 +106,6 @@ public class LoginController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 }

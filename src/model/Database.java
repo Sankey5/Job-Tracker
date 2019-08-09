@@ -250,6 +250,10 @@ public class Database {
 	public void setCustomers(ArrayList<Customer> customers) {
 		this.customers = customers;
 	}
+	
+	public void addCustomer(Customer customer) {
+		customers.add(customer);
+	}
 
 	public ArrayList<Job> getJobs() {
 		return jobs;
