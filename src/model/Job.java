@@ -74,7 +74,7 @@ public class Job implements Serializable{
 		String header = toString() + "\n";
 		String subject = this.customer.toString() + "\n";
 		String body = "Tool needed:" +  this.equipment.toString()
-                    + "\nDetails: " + this.getMemo();
+                    + "Details: " + this.getMemo();
 		return header + subject + body;
 	}
 

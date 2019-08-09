@@ -1,6 +1,7 @@
 package view;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -12,7 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import model.Customer;
 import model.Database;
+import model.Equipment;
+import model.Job;
 import model.Technician;
 
 public class TechSelectController implements Initializable{
@@ -31,7 +35,25 @@ public class TechSelectController implements Initializable{
 		
 		Technician tempTech = new Technician();
 		tempTech.setName("Jason");
+		tempTech.setPhoneNumber("123456789");
+		tempTech.setStats("Doing Pretty Well");
+		tempTech.setStatus("New Hire");
+		tempTech.setNotice("Generated from login");
+		int j = 4;
+		for(int i = 0; i < j; i++) {
+			Customer guy = new Customer("Place"+i, "Person"+i, 123456789, "thisguy@email"+i);
+			Equipment tool = new Equipment("Make"+i, "Model"+i, "Serial"+i);
+			Job work = new Job(guy, tool, LocalDate.now());
+			tempTech.addEquipment(tool);
+			tempTech.giveJob(work);
+		}
 		
+		for(int i = j; i < j + 4; i++) {
+			Customer guy = new Customer("Place"+i, "Person"+i, 123456789, "thisguy@email"+i);
+			Equipment tool = new Equipment("Make"+(i-2), "Model"+(i-2), "Serial"+(i-2));
+			Job work = new Job(guy, tool, LocalDate.now());
+			database.addJob(work);
+		}
 		database.getTechnicians().add(tempTech);
 		
 		ObservableList<Technician> something = FXCollections.observableArrayList(database.getTechnicians());
@@ -45,7 +67,8 @@ public class TechSelectController implements Initializable{
 			if(event.getSource() == null) {
 				
 			} else {
-				Database.getInstance().setCurrentTech((Technician) event.getSource());
+				
+				MainController.getInstance().setSelectedTech(techListView.getSelectionModel().getSelectedItem());
 				MainController.switchView(ViewType.Technician);
 			}
 		}

@@ -9,9 +9,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Database {
 	private static Database database;
@@ -260,9 +263,18 @@ public class Database {
 	public ArrayList<Job> getJobs() {
 		return jobs;
 	}
-
+	
+	public void addJob(Job job) {
+		this.jobs.add(job);	
+	}
 	public void setJobs(ArrayList<Job> jobs) {
 		this.jobs = jobs;
+	}
+	
+	public List<String> getStringJobs() {
+		List<String> strings = getJobs().stream()
+				.map(object -> Objects.toString(object, null)).collect(Collectors.toList());
+		return strings;
 	}
 
 	public ArrayList<Equipment> getEquipment() {

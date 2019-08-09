@@ -14,6 +14,7 @@ public class Technician implements Serializable {
 	private String name;
 	// List of jobs owned by a technician
 	private ArrayList<Job> myJobs;
+	private ArrayList<Job> completedJobs;
 	// List of equipment a technician is proficient with
 	private ArrayList<Equipment> equipmentList;
 	private String id;
@@ -87,7 +88,7 @@ public class Technician implements Serializable {
 		this.myJobs = myJobs;
 	}
 	
-	public List<String> getJobs() {
+	public List<String> getStringJobs() {
 		List<String> strings = getMyJobs().stream()
 				.map(object -> Objects.toString(object, null)).collect(Collectors.toList());
 		return strings;
@@ -141,12 +142,30 @@ public class Technician implements Serializable {
 		this.notice = notice;
 	}
 
-	public String toExtras() {
-		
-		return "This is for extras";
+	public String toString() {
+		return getName() + " - Jobs: " + getMyJobs().size();
 	}
 	
-	public String toString() {
-		return this.name + " - Jobs: " + this.getMyJobs().size();
+	public String toExtras() {
+		return "Contact: " + getName() + " - " + getPhoneNumber() + "\nEquipment Registered: \n" 
+				+ getEquipmentList().toString().replaceAll("\\[|, |\\]", "") + "Stats: "+ getStats() + "\nStatus: " + getStatus() + "\nNotices: \n" + getNotice();
 	}
+
+	public ArrayList<Job> getCompletedJobs() {
+		return completedJobs;
+	}
+
+	public void setCompletedJobs(ArrayList<Job> completedJobs) {
+		this.completedJobs = completedJobs;
+	}
+	
+	public void removeJob(Job job) {
+		this.myJobs.remove(job);
+	}
+	
+	public void completedJob(Job job) {
+		this.completedJobs.add(job);
+		removeJob(job);
+	}
+	
 }
