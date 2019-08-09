@@ -2,21 +2,17 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Technician implements Serializable {
 
 	private String name;
 	// List of jobs owned by a technician
 	private ArrayList<Job> myJobs;
-	private ArrayList<Job> myCompletedJobs;
 	// List of equipment a technician is proficient with
 	private ArrayList<Equipment> equipmentList;
 	private String id;
 	private String password;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String stats;
 	private String status;
 	private String notice;
@@ -24,7 +20,6 @@ public class Technician implements Serializable {
 	public Technician() {
 		this.myJobs = new ArrayList<Job>();
 		this.equipmentList = new ArrayList<Equipment>();
-		this.myCompletedJobs = new ArrayList<Job>();
 		this.id = this.name;
 		this.password = "";
 		
@@ -82,40 +77,8 @@ public class Technician implements Serializable {
 	public ArrayList<Job> getMyJobs() {
 		return myJobs;
 	}
-	
-	public List<String> getJobs() {
-		List<String> strings = getMyJobs().stream()
-				   .map(object -> Objects.toString(object, null))
-				   .collect(Collectors.toList());
-		return strings;
-				
-		
-	}
-	
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
-	}
-	
-	public void completedJob(Job job) {
-		this.myCompletedJobs.add(job);
-		this.myJobs.remove(job);
-	}
-	
-	public void removeJob(Job job) {
-		this.myJobs.remove(job);
-	}
-	public ArrayList<Job> getCompletedJobs() {
-		return myCompletedJobs;
-	}
-
-	public List<String> getCJobs() {
-		List<String> strings = getCompletedJobs().stream()
-				   .map(object -> Objects.toString(object, null))
-				   .collect(Collectors.toList());
-		return strings;
-	}
-	public void setCompletedJobs(ArrayList<Job> completedJobs) {
-		this.myCompletedJobs = completedJobs;
 	}
 
 	public String getId() {
@@ -134,12 +97,12 @@ public class Technician implements Serializable {
 		this.password = password;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int i) {
-		this.phoneNumber = i;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getStats() {
@@ -165,17 +128,4 @@ public class Technician implements Serializable {
 	public void setNotice(String notice) {
 		this.notice = notice;
 	}
-	
-	public String toString() {
-		return getName() + getMyJobs() + getEquipmentList();
-	}
-	
-	public String toExtras() {
-		return "Contact: " + getName() + " - " + getPhoneNumber() + "\nEquipment Registered: \n" 
-				+ getEquipmentList().toString().replaceAll("\\[|, |\\]", "") + "Stats: "+ getStats() + "\nStatus: " + getStatus() + "\nNotices: \n" + getNotice();
-	}
-
-	
-	
-	
 }

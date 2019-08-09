@@ -38,7 +38,7 @@ public class Equipment implements Serializable {
 	}
 	
 	public String toString() {
-		return getEquipmentMake() + " - " +  getEquipmentModel() + " @" + getEquipmentSerial() + "\n";
+		return getEquipmentMake() + " - " +  getEquipmentModel() + " @" + getEquipmentSerial();
 	}
 
 

@@ -1,6 +1,5 @@
 package view;
 
 public enum ViewType {
-	Technician, Admin, Login;
-
+	Technician, Admin, Login, TechSelect;
 }

@@ -227,7 +227,8 @@ public class Database {
             e.printStackTrace(); 
         } 
 	}
-
+	
+	//getter and setters
 	public ArrayList<Technician> getTechnicians() {
 		return technicians;
 	}

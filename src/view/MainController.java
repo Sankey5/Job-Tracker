@@ -31,6 +31,7 @@ public class MainController implements Initializable {
 	private static BorderPane rootPane;
 	
 	public MainController() {
+		
 	}
 	
 	public void setRootPane(BorderPane rootPane) {
@@ -64,7 +65,10 @@ public class MainController implements Initializable {
 					loader = new FXMLLoader(Launcher.class.getResource("/view/LoginView.fxml"));
 					loader.setController(new LoginController());
 					break;
-					
+				case TechSelect:
+					loader = new FXMLLoader(Launcher.class.getResource("/view/TechSelectView.fxml"));
+					loader.setController(new TechSelectController());
+					break;
 			}
 			Parent view = loader.load();
 			rootPane.setCenter(view);
