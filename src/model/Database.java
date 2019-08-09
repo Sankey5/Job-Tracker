@@ -21,6 +21,8 @@ public class Database {
 	private ArrayList<Job> jobs;
 	private ArrayList<Equipment> equipment;
 	private Logger logger;
+	private Technician currentTech;
+	
 	
 	private Database() {
 		logger = Logger.getLogger(this.getClass().getName());
@@ -269,6 +271,14 @@ public class Database {
 
 	public void setEquipment(ArrayList<Equipment> equipment) {
 		this.equipment = equipment;
+	}
+
+	public Technician getCurrentTech() {
+		return currentTech;
+	}
+
+	public void setCurrentTech(Technician currentTech) {
+		this.currentTech = currentTech;
 	}
 
 }

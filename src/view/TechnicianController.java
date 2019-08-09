@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import model.Database;
+import model.Technician;
 import javafx.scene.control.TextArea;
 
 public class TechnicianController implements EventHandler<ActionEvent>, Initializable {
@@ -29,11 +31,13 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub	
+		
+		Technician tech = Database.getInstance().getCurrentTech();
 		ObservableList<String> test = FXCollections.observableArrayList("Job", "Job2", "Job3", "Job4", "Job5");
 		currentJobsListView.setItems(test);
 		availableJobsListView.setItems(test);
 		detailsTextArea.setText("Details go here");
-		extrasTextArea.setText("Extras go here");
+		extrasTextArea.setText(tech.toExtras());
 		
 	}
 	

@@ -41,13 +41,18 @@ public class TechSelectController implements Initializable{
 	
 	@FXML
     void selectTechnician(MouseEvent event) {
-		if(event.getClickCount() < 2) {
-			return;
+		if(event.getClickCount() == 2) {
+			if(event.getSource() == null) {
+				
+			} else {
+				Database.getInstance().setCurrentTech((Technician) event.getSource());
+				MainController.switchView(ViewType.Technician);
+			}
 		}
 		
-		MainController.getInstance().setSelectedTech(techListView.getSelectionModel().getSelectedItem());
+		//MainController.getInstance().setSelectedTech(techListView.getSelectionModel().getSelectedItem());
 		
-		MainController.switchView(ViewType.Technician);
+		//MainController.switchView(ViewType.Technician);
     }
 	
 	@FXML

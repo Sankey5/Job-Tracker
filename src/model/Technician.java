@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+
+
 
 public class Technician implements Serializable {
 
@@ -80,7 +86,13 @@ public class Technician implements Serializable {
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
 	}
-
+	
+	public List<String> getJobs() {
+		List<String> strings = getMyJobs().stream()
+				.map(object -> Objects.toString(object, null)).collect(Collectors.toList());
+		return strings;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -127,5 +139,14 @@ public class Technician implements Serializable {
 
 	public void setNotice(String notice) {
 		this.notice = notice;
+	}
+
+	public String toExtras() {
+		
+		return "This is for extras";
+	}
+	
+	public String toString() {
+		return this.name + " - Jobs: " + this.getMyJobs().size();
 	}
 }
