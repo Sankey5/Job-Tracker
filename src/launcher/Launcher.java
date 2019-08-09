@@ -20,14 +20,14 @@ public class Launcher extends Application{
 		stage = primaryStage;
 		MainController controller = new MainController();
 		FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/defaultView.fxml"));
-		loader.setController(controller);
+		//loader.setController(controller);
 		Parent root = loader.load();
 		controller.setRootPane((BorderPane) root);
+		controller.switchView(ViewType.Login);
 		Scene scene = new Scene(root);
 		stage.setTitle("Welcome! - Job Tracker");
 		stage.setScene(scene);
 		primaryStage.show();
-		controller.switchView(ViewType.Login);
 	}
 	
 	public static void main(String[] args) {

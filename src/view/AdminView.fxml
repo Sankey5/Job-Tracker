@@ -25,7 +25,7 @@
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="598.0" spacing="10.0">
                      <children>
-                        <Label text="Admin Main Page " textFill="#e13535">
+                        <Label text="Admin Main " textFill="#e13535">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -40,7 +40,8 @@
                         <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                            <children>
                               <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="248.0" text="All Jobs" />
-                              <ListView fx:id="jobsListView" editable="true" prefHeight="333.0" prefWidth="215.0" />
+                              <ListView fx:id="jobsListView" editable="true" prefHeight="185.0" prefWidth="215.0" />
+                              <TextArea prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
@@ -57,9 +58,8 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="163.0" prefWidth="585.0" spacing="10.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="163.0" prefWidth="585.0" spacing="40.0">
                      <children>
-                        <VBox alignment="CENTER" />
                         <MenuButton fx:id="actionMenuButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="I'd like to...">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -71,6 +71,7 @@
                               </Menu>
                           </items>
                         </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="132.0" text="Button" />
                         <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">
                            <children>
                               <TextField fx:id="memoTextField" />
@@ -81,13 +82,16 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets left="300.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
                      </children>
                      <padding>
                         <Insets top="20.0" />
                      </padding>
+                     <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
                   </HBox>
                </children>
             </FlowPane>

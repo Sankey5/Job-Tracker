@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField usernameTextField, createTextField, createTextField2;
 	public static Technician loginTech = null;
+	public static ArrayList<Job> jobList;
 	
 	@FXML
     void enterAction(ActionEvent event) throws IOException {
@@ -46,6 +48,7 @@ public class LoginController implements Initializable {
 		String amountJobs = createTextField.getText();
 		int j = Integer.parseInt(amountJobs);
 		Technician test = new Technician();
+		ArrayList<Job> list = new ArrayList<Job>();
 		test.setName("John");
 		test.setPhoneNumber(123456789);
 		test.setStats("Doing Pretty Well");
@@ -60,8 +63,15 @@ public class LoginController implements Initializable {
 		}
 		System.out.println(test);
 		
+		for(int i = j; i < j + 4 ; i++) {
+			Customer guy = new Customer("Place"+i, "Person"+i, 123456789, "thisguy@email"+i);
+			Equipment tool = new Equipment("Make"+(i-2), "Model"+(i-2), "Serial"+(i-2));
+			Job work = new Job(guy, tool, LocalDate.now());
+			list.add(work);
+		}
+		System.out.println(list);
 		
-		
+		jobList = list;
 		loginTech = test;
 			
 		}

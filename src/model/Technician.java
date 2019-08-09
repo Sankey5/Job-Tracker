@@ -11,6 +11,7 @@ public class Technician implements Serializable {
 	private String name;
 	// List of jobs owned by a technician
 	private ArrayList<Job> myJobs;
+	private ArrayList<Job> myCompletedJobs;
 	// List of equipment a technician is proficient with
 	private ArrayList<Equipment> equipmentList;
 	private String id;
@@ -23,6 +24,7 @@ public class Technician implements Serializable {
 	public Technician() {
 		this.myJobs = new ArrayList<Job>();
 		this.equipmentList = new ArrayList<Equipment>();
+		this.myCompletedJobs = new ArrayList<Job>();
 		this.id = this.name;
 		this.password = "";
 		
@@ -89,8 +91,31 @@ public class Technician implements Serializable {
 				
 		
 	}
+	
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
+	}
+	
+	public void completedJob(Job job) {
+		this.myCompletedJobs.add(job);
+		this.myJobs.remove(job);
+	}
+	
+	public void removeJob(Job job) {
+		this.myJobs.remove(job);
+	}
+	public ArrayList<Job> getCompletedJobs() {
+		return myCompletedJobs;
+	}
+
+	public List<String> getCJobs() {
+		List<String> strings = getCompletedJobs().stream()
+				   .map(object -> Objects.toString(object, null))
+				   .collect(Collectors.toList());
+		return strings;
+	}
+	public void setCompletedJobs(ArrayList<Job> completedJobs) {
+		this.myCompletedJobs = completedJobs;
 	}
 
 	public String getId() {
@@ -149,6 +174,8 @@ public class Technician implements Serializable {
 		return "Contact: " + getName() + " - " + getPhoneNumber() + "\nEquipment Registered: \n" 
 				+ getEquipmentList().toString().replaceAll("\\[|, |\\]", "") + "Stats: "+ getStats() + "\nStatus: " + getStatus() + "\nNotices: \n" + getNotice();
 	}
+
+	
 	
 	
 }
