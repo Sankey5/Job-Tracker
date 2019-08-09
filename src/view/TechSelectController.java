@@ -45,7 +45,9 @@ public class TechSelectController implements Initializable{
 			return;
 		}
 		
+		MainController.getInstance().setSelectedTech(techListView.getSelectionModel().getSelectedItem());
 		
+		MainController.switchView(ViewType.Technician);
     }
 	
 	@FXML

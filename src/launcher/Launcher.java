@@ -18,7 +18,7 @@ public class Launcher extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		stage = primaryStage;
-		MainController controller = new MainController();
+		MainController controller = MainController.getInstance();
 		FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/defaultView.fxml"));
 		//loader.setController(controller);
 		Parent root = loader.load();

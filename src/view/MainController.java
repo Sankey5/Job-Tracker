@@ -17,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import launcher.Launcher;
 import model.Database;
+import model.Technician;
 
 /**
  * This class is the main App skeleton controller that individual views will communicate with to access the database.
@@ -25,15 +26,33 @@ import model.Database;
  */
 public class MainController implements Initializable {
 	
+	private static MainController singleton;
+	
+	private Technician selectedTech;
+	
 	private ViewType view;
-//	private static Database database;
 	
 	private static BorderPane rootPane;
 	
-	public MainController() {
+	private MainController() {
 		
 	}
 	
+	public static MainController getInstance() {
+		if(singleton == null) {
+			singleton = new MainController();
+		}
+		return singleton;
+	}
+	
+	public Technician getSelectedTech() {
+		return selectedTech;
+	}
+
+	public void setSelectedTech(Technician selectedTech) {
+		this.selectedTech = selectedTech;
+	}
+
 	public void setRootPane(BorderPane rootPane) {
 		MainController.rootPane = rootPane;
 	}
