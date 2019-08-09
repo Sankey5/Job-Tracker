@@ -47,4 +47,9 @@ public class TechSelectController implements Initializable{
 		
 		
     }
+	
+	@FXML
+    void goBack(ActionEvent event) {
+		MainController.switchView(ViewType.Login);
+    }
 }
