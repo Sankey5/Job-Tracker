@@ -1,0 +1,11 @@
+*{
+	-fx-background-color: #424242;
+}
+
+.button {
+	-fx-font-size: 16pt;
+	-fx-shape: "";
+	-fx-background-color: #039BE5;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
