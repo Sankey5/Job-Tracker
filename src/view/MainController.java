@@ -105,6 +105,7 @@ public class MainController implements Initializable {
 				case Login:
 					loader = new FXMLLoader(Launcher.class.getResource("/view/LoginView.fxml"));
 					loader.setController(new LoginController());
+					Database.getInstance().save();
 					break;
 				case TechSelect:
 					loader = new FXMLLoader(Launcher.class.getResource("/view/TechSelectView.fxml"));

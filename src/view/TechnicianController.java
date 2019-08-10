@@ -42,7 +42,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
-	private TextArea detailsTextArea;
+	private TextArea detailsTextArea, extrasTextArea;
 	@FXML
 	private TextField editField;
 	
@@ -63,9 +63,14 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
 		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
 		
-		Collections.sort(expressJobsUnsorted);
-		Collections.sort(regularJobsUnsorted);
-		Collections.sort(slowJobsUnsorted);
+		for(Job temp: tech.getMyJobs()) {
+			if(temp.getPriority() == Priority.High)
+				expressJobsUnsorted.add(temp);
+			if(temp.getPriority() == Priority.Medium)
+				regularJobsUnsorted.add(temp);
+			if(temp.getPriority() == Priority.Low)
+				slowJobsUnsorted.add(temp);
+		}
 		
 		expressObservableList = FXCollections.observableArrayList(expressJobsUnsorted);
 		regularObservableList = FXCollections.observableArrayList(regularJobsUnsorted);
@@ -173,41 +178,44 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		}
 	}
 	
-	private void moveJob(Job jobToMove) {
-		switch(jobToMove.getPriority()) {
-		case High:
-			expressObservableList.add(jobToMove);
-			Collections.sort(expressObservableList);
-			expressJobsListView.setItems(expressObservableList);
-			break;
-		case Medium:
-			regularObservableList.add(jobToMove);
-			Collections.sort(regularObservableList);
-			regularJobsListView.setItems(regularObservableList);
-			break;
-		case Low:
-			slowObservableList.add(jobToMove);
-			Collections.sort(slowObservableList);
-			slowJobsListView.setItems(slowObservableList);
-			break;
+	private void updateJobQueues() {
+		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
+		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
+		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
+		
+		for(Job temp: tech.getMyJobs()) {
+			if(temp.getPriority() == Priority.High)
+				expressJobsUnsorted.add(temp);
+			if(temp.getPriority() == Priority.Medium)
+				regularJobsUnsorted.add(temp);
+			if(temp.getPriority() == Priority.Low)
+				slowJobsUnsorted.add(temp);
 		}
+		
+		expressObservableList = FXCollections.observableArrayList(expressJobsUnsorted);
+		regularObservableList = FXCollections.observableArrayList(regularJobsUnsorted);
+		slowObservableList = FXCollections.observableArrayList(slowJobsUnsorted);
+		
+		expressJobsListView.setItems(expressObservableList);
+		regularJobsListView.setItems(regularObservableList);
+		slowJobsListView.setItems(slowObservableList);
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
 		
 		if(availableJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
+		}
+		
 		Job available = availableJobsListView.getSelectionModel().getSelectedItem();
 		if(tech.giveJob(available)) {
 			database.getJobs().remove(available);
-			tech.getMyJobs().add(available);
-			moveJob(available);
+			updateJobQueues();
 			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
-		}
+		
 	}
 	
 	public void expressMenuComplete(ActionEvent event) {
@@ -230,7 +238,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
 		database.addJob(current);
 		tech.removeJob(current);
-		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		
 	}
@@ -257,7 +265,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		
 		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
-		regularJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		
 	}
@@ -270,7 +278,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
 		database.addJob(current);
 		tech.removeJob(current);
-		regularJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		
 	}
@@ -297,7 +305,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		
 		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
-		slowJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		
 	}
@@ -310,7 +318,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
 		database.addJob(current);
 		tech.removeJob(current);
-		slowJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		
 	}
@@ -339,7 +347,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.giveJob(current);
 		tech.getCompletedJobs().remove(current);
 		database.getJobs().add(current);
-		moveJob(current);
+		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		
 	}
