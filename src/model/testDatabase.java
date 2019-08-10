@@ -22,6 +22,7 @@ public class testDatabase {
 
 	public static void loadSampleData() {
 		database = Database.getInstance();
+		/*
 		int j = 6; //Number of jobs
 		int w = 4; // Number of workers
 		int i = 0;
@@ -47,7 +48,7 @@ public class testDatabase {
 				temp.giveJob(work);
 			}
 			
-			for(i = j; i < j*3; i++) {
+			for(i = j; i < j*2; i++) {
 				Customer guy = new Customer("Company"+i, "Customer"+i, 210147258+i,"Customer"+i+"@email.com");
 				Equipment tool = new Equipment("Make"+(i-2), "Model"+(i-2), "Serial"+(i-2));
 				Job work = new Job(guy, tool, LocalDate.of(2020, 2, i+1));
@@ -68,7 +69,7 @@ public class testDatabase {
 			database.addTechnician(temp);
 
 		}
-		
+		*/
 		Equipment carJack = new Equipment("Champion", "Jack5000", "5001");
 		Equipment wrench = new Equipment("Stanley", "big wrench", "5002");
 		ArrayList<Equipment> inventory = new ArrayList<Equipment>();
@@ -85,6 +86,24 @@ public class testDatabase {
 		database.addTechnician(bill);
 		Job bobJob = new Job(bobSmith, carJack, LocalDate.of(2019, 8, 20));
 		database.addJob(bobJob);
+		
+		Equipment screwdriver = new Equipment("Phillips", "ScrewDriver", "5001");
+		Equipment hammer = new Equipment("Stanley", "Hammer", "5002");
+		ArrayList<Equipment> inventory2 = new ArrayList<Equipment>();
+		inventory2.add(screwdriver);
+		inventory2.add(hammer);
+		database.addEquipment(screwdriver);
+		database.addEquipment(hammer);
+		Customer timAnders = new Customer("Walmart", "Timothy Anders", 2105559876, "Timothy@Walmart.com");
+		Customer janeFergurson = new Customer("Express Oil", "Jane Fergurson", 2108880123, "Jane@ExpressOil.net");
+		database.addCustomer(timAnders);
+		database.addCustomer(janeFergurson);
+		Technician john = new Technician("John");
+		john.setEquipmentList(inventory2);
+		database.addTechnician(john);
+		Job janeJob = new Job(janeFergurson, hammer, LocalDate.of(2019, 8, 21));
+		database.addJob(janeJob);
+		
 		
 		database.save();
 	}
