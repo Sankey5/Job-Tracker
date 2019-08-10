@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox>
          <children>
@@ -45,9 +40,24 @@
                   <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                      <children>
                         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="248.0" text="Current Jobs" />
-                        <ListView fx:id="currentJobsListView" editable="true" onMouseClicked="#handleMouseClick" prefHeight="151.0" prefWidth="210.0" />
+                        <ListView fx:id="currentJobsListView" editable="true" onMouseClicked="#handleMouseClick" prefHeight="151.0" prefWidth="210.0">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
+                                    <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></ListView>
                         <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="219.0" text="Completed Jobs" />
-                        <ListView fx:id="completedJobsListView" onMouseClicked="#handleMouseClick" prefHeight="163.0" prefWidth="210.0" />
+                        <ListView fx:id="completedJobsListView" onMouseClicked="#handleMouseClick3" prefHeight="163.0" prefWidth="210.0">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#completedMenuReturn" text="Return to Current Jobs" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></ListView>
                      </children>
                   </VBox>
                   <VBox prefHeight="351.0" prefWidth="296.0">
@@ -80,7 +90,14 @@
                               <Button fx:id="updateButton" mnemonicParsing="false" text="Update" />
                            </children>
                         </VBox>
-                        <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick" prefHeight="163.0" prefWidth="389.0" />
+                        <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick2" prefHeight="163.0" prefWidth="389.0">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#availableMenuAdd" text="Add to Current Jobs" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></ListView>
                      </children>
                   </HBox>
                </children>

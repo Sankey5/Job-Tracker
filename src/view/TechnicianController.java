@@ -1,16 +1,4 @@
-/*******************************************************************************
- * Copyright (c) 2019 IBM Corporation and others.
- *
- * This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+
 package view;
 
 import java.net.URL;
@@ -32,6 +20,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import launcher.Launcher;
 import model.Database;
 import model.Job;
 import model.Technician;
@@ -54,7 +43,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub	
-		
+		Launcher.stage.setFullScreen(true);
 		tech = MainController.getInstance().getSelectedTech();
 		database = Database.getInstance();
 		ObservableList<Job> availablejobs = FXCollections.observableArrayList(Database.getInstance().getJobs());
@@ -74,6 +63,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	
 	public void logoutAction(ActionEvent event) {
+		Launcher.stage.setFullScreen(false);
 		MainController.switchView(ViewType.Login);
 	}
 	
@@ -123,6 +113,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		
 	public void availableMenuAdd(ActionEvent event) {
 		
+		if(availableJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 		Job available = availableJobsListView.getSelectionModel().getSelectedItem();
 		if(tech.giveJob(available)) {
 			database.getInstance().getJobs().remove(available);
@@ -131,30 +124,42 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
+		}
 	}
 	
 	public void currentMenuComplete(ActionEvent event) {
+		if(currentJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 		Job current = currentJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		}
 	}
 	
 	public void currentMenuRemove(ActionEvent event) {
+		if(currentJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 		Job current = currentJobsListView.getSelectionModel().getSelectedItem();
 		database.getInstance().addJob(current);
 		tech.removeJob(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
+		}
 	}
 	
 	public void completedMenuReturn(ActionEvent event) {
+		if(completedJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
 		tech.giveJob(current);
 		tech.getCompletedJobs().remove(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
+		}
 	}
 	
 	
