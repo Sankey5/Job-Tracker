@@ -59,19 +59,19 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="163.0" prefWidth="585.0" spacing="100.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="143.0" prefWidth="120.0" spacing="40.0">
+                  <VBox alignment="CENTER" prefHeight="143.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleAddJob" prefWidth="130.0" text="Add Job" />
-                        <Button mnemonicParsing="false" onAction="#handleAddTechnician" prefWidth="130.0" text="Add Technician" />
+                        <Button mnemonicParsing="false" onAction="#handleAddJob" prefHeight="35.0" prefWidth="250.0" text="Add Job" />
+                        <Button mnemonicParsing="false" onAction="#handleAddTechnician" prefHeight="35.0" prefWidth="250.0" text="Add Technician" />
                      </children>
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="82.0" prefWidth="134.0" spacing="40.0">
+                  <VBox alignment="CENTER" prefHeight="82.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="130.0" text="Add Equipment" />
-                        <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
+                        <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="35.0" prefWidth="250.0" text="Add Equipment" />
+                        <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="35.0" prefWidth="250.0" text="Add Customer" />
                      </children>
                      <HBox.margin>
                         <Insets top="20.0" />

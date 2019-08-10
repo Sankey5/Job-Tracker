@@ -19,12 +19,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" spacing="200.0">
                      <children>
-                        <MenuButton fx:id="customerMenuButton" mnemonicParsing="false" onAction="#handleSelectCustomer" text="Select Customer">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
+                        <MenuButton fx:id="customerMenuButton" mnemonicParsing="false" onAction="#handleSelectCustomer" text="Select Customer" />
                         <Button mnemonicParsing="false" onAction="#handleNewCustomer" text="New Customer" />
                      </children>
                   </HBox>
@@ -42,11 +37,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="12.0" prefWidth="600.0" spacing="200.0">
                      <children>
-                        <MenuButton fx:id="equipmentMenuButton" mnemonicParsing="false" onAction="#handleSelectEquipment" text="Select Equipment">
-                           <items>
-                              <CheckMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                           </items>
-                        </MenuButton>
+                        <MenuButton fx:id="equipmentMenuButton" mnemonicParsing="false" onAction="#handleSelectEquipment" text="Select Equipment" />
                         <Button mnemonicParsing="false" onAction="#handleNewEquipment" text="New Equipment" />
                      </children>
                   </HBox>
@@ -67,6 +58,6 @@
       <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="599.0" text="Please fill out all fields to create a new job" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER" />
    </top>
    <padding>
-      <Insets bottom="10.0" top="10.0" />
+      <Insets bottom="20.0" top="10.0" />
    </padding>
 </BorderPane>
