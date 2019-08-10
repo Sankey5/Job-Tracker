@@ -47,23 +47,6 @@ public class Database {
 		this.customers = new ArrayList<Customer>();
 		this.jobs = new ArrayList<Job>();
 		this.equipment = new ArrayList<Equipment>();
-		
-		/*Test case
-		Technician tech = new Technician();
-		tech.setName("bob smith");
-		Customer customer = new Customer("Big corp", "Bill gates", 3, "@me");
-		Equipment hacksaw = new Equipment("blah", "bleh", "1234");
-		Job job = new Job(customer, hacksaw, LocalDate.now());
-		tech.addEquipment(hacksaw);
-		if (tech.giveJob(job)) {
-			System.out.print("he got the job\n");
-		}
-		else {
-			System.out.print("he didn't\n");
-		}
-		technicians.add(tech);
-		saveTechnicians();
-		end test case */
 		loadDatabase();
 	}
 
