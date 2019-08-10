@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="jobNumberText" promptText="Job Number" />
+                  <DatePicker fx:id="deadlinePicker" promptText="Deadline" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="customerNameText" promptText="Customer Name" />
+                  <TextField fx:id="customerCompanyText" promptText="Company Name" />
+                  <TextField fx:id="customerPhoneNumberText" promptText="Customer Phone Number" />
+                  <TextField fx:id="customerEmailText" promptText="Customer Email" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="equipmentMakeText" promptText="Equipment Make" />
+                  <TextField fx:id="equipmentModelText" promptText="Equipment Model" />
+                  <TextField fx:id="equipmentSerialText" promptText="Equipment Serial" />
+               </children>
+            </HBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" text="Create Job" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="599.0" text="Please fill out all fields to create a new job" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER" />
+   </top>
+</BorderPane>

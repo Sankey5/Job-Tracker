@@ -20,6 +20,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.stage.Screen;
 import launcher.Launcher;
 import model.Database;
 import model.Job;
@@ -29,11 +30,9 @@ import javafx.scene.control.TextArea;
 public class TechnicianController implements EventHandler<ActionEvent>, Initializable {
 
 	@FXML
-	private Button updateDateButton;
+	private Button newJob;
 	@FXML
 	private ListView<Job> availableJobsListView, currentJobsListView, completedJobsListView;
-	@FXML
-	private DatePicker startDatePicker, endDatePicker;
 	@FXML
 	private TextArea detailsTextArea, extrasTextArea;
 	
@@ -42,8 +41,12 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub	
-		Launcher.stage.setFullScreen(true);
+		// TODO Auto-generated method stub
+		Screen screen = Screen.getPrimary();
+		Launcher.stage.setX(0);
+		Launcher.stage.setY(0);
+		Launcher.stage.setHeight(screen.getBounds().getHeight());
+		Launcher.stage.setWidth(screen.getBounds().getWidth());
 		tech = MainController.getInstance().getSelectedTech();
 		database = Database.getInstance();
 		ObservableList<Job> availablejobs = FXCollections.observableArrayList(Database.getInstance().getJobs());
@@ -63,7 +66,6 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	
 	public void logoutAction(ActionEvent event) {
-		Launcher.stage.setFullScreen(false);
 		MainController.switchView(ViewType.Login);
 	}
 	
@@ -165,12 +167,6 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		extrasTextArea.setText(tech.toExtras());
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 	@Override
 	public void handle(ActionEvent event) {
