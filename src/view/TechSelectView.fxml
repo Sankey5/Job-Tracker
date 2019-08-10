@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,12 +13,18 @@
    <top>
       <FlowPane columnHalignment="CENTER" prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="55.0" prefWidth="200.0">
+            <Pane prefHeight="55.0" prefWidth="135.0">
                <children>
                   <Button alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="4.0" mnemonicParsing="false" onAction="#goBack" text="Back" textAlignment="CENTER" />
                </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
             </Pane>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="167.0" text="Technician Selection">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="300.0" text="Technician Selection">
                <font>
                   <Font size="18.0" />
                </font>
