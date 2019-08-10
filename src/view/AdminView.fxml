@@ -17,90 +17,84 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane>
+
+<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="650.0" prefWidth="600.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="598.0" spacing="10.0">
                <children>
-                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="598.0" spacing="10.0">
+                  <Label text="Admin Main " textFill="#e13535">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="351.0" prefWidth="600.0">
+               <children>
+                  <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                      <children>
-                        <Label text="Admin Main " textFill="#e13535">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="30.0" />
-                           </HBox.margin>
-                        </Label>
+                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="248.0" text="All Jobs" />
+                        <ListView fx:id="jobsListView" editable="true" prefHeight="185.0" prefWidth="215.0" />
+                        <TextArea prefHeight="200.0" prefWidth="200.0" />
                      </children>
-                  </HBox>
-                  <HBox prefHeight="351.0" prefWidth="600.0">
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                      <children>
-                        <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="248.0" text="All Jobs" />
-                              <ListView fx:id="jobsListView" editable="true" prefHeight="185.0" prefWidth="215.0" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="218.0" text="Inventory" />
-                              <ListView fx:id="inventoryListView" editable="true" prefHeight="333.0" prefWidth="215.0" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="350.0" prefWidth="170.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="149.0" text="Clients" />
-                              <ListView fx:id="clientListView" editable="true" prefHeight="333.0" prefWidth="170.0" />
-                           </children>
-                        </VBox>
+                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="218.0" text="Inventory" />
+                        <ListView fx:id="inventoryListView" editable="true" prefHeight="333.0" prefWidth="215.0" />
                      </children>
-                  </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="163.0" prefWidth="585.0" spacing="40.0">
+                  </VBox>
+                  <VBox prefHeight="350.0" prefWidth="170.0">
                      <children>
-                        <MenuButton fx:id="actionMenuButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="I'd like to...">
+                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="149.0" text="Clients" />
+                        <ListView fx:id="clientListView" editable="true" prefHeight="333.0" prefWidth="170.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="163.0" prefWidth="585.0" spacing="40.0">
+               <children>
+                  <MenuButton fx:id="actionMenuButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="I'd like to...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                        <Menu mnemonicParsing="false" text="Unspecified Menu">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                              <Menu mnemonicParsing="false" text="Unspecified Menu">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                </items>
-                              </Menu>
                           </items>
-                        </MenuButton>
-                        <VBox alignment="CENTER" spacing="40.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="130.0" text="Add Equipment" />
-                              <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">
-                           <children>
-                              <TextField fx:id="memoTextField" />
-                              <Button mnemonicParsing="false" onAction="#addMemo" text="Add Memo">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </VBox>
+                        </Menu>
+                    </items>
+                  </MenuButton>
+                  <VBox alignment="CENTER" spacing="40.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleAddEquipment" prefHeight="27.0" prefWidth="130.0" text="Add Equipment" />
+                        <Button mnemonicParsing="false" onAction="#handleAddCustomer" prefHeight="27.0" prefWidth="130.0" text="Add Customer" />
                      </children>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                     <FlowPane.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </FlowPane.margin>
-                  </HBox>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="memoTextField" />
+                        <Button mnemonicParsing="false" onAction="#addMemo" text="Add Memo">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
                </children>
-            </FlowPane>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
          </children>
-      </AnchorPane>
-   </children>
-</Pane>
+      </VBox>
+   </center>
+</BorderPane>
