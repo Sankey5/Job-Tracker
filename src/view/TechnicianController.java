@@ -28,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Database;
+import model.Job;
 import model.Technician;
 import javafx.scene.control.TextArea;
 
@@ -36,7 +37,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private Button updateDateButton;
 	@FXML
-	private ListView<String> availableJobsListView, currentJobsListView, completedJobsListView;
+	private ListView<Job> availableJobsListView, currentJobsListView, completedJobsListView;
 	@FXML
 	private DatePicker startDatePicker, endDatePicker;
 	@FXML
@@ -50,9 +51,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		
 		tech = MainController.getInstance().getSelectedTech();
 		database = Database.getInstance();
-		ObservableList<String> availablejobs = FXCollections.observableArrayList(Database.getInstance().getStringJobs());
-		ObservableList<String> currentjobs = FXCollections.observableArrayList(tech.getStringJobs());
-		ObservableList<String> completedjobs = FXCollections.observableArrayList(tech.getStringJobs());
+		ObservableList<Job> availablejobs = FXCollections.observableArrayList(Database.getInstance().getJobs());
+		ObservableList<Job> currentjobs = FXCollections.observableArrayList(tech.getMyJobs());
+		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
 		currentJobsListView.setItems(currentjobs);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
@@ -73,7 +74,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	public void handleMouseClick(MouseEvent click) {
 		
-			String current = currentJobsListView.getSelectionModel().getSelectedItem();
+			/*String current = currentJobsListView.getSelectionModel().getSelectedItem();
 			System.out.println(current);
 			for (int i = 0; i < tech.getMyJobs().size(); i++) {
 				if(current.equals(tech.getMyJobs().get(i).toString())) {
@@ -93,7 +94,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 				if(completed.equals(tech.getMyJobs().get(i).toString())) {
 					detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
 				}
-			}	
+			}	*/
 	}
 	
 

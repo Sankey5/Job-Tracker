@@ -39,10 +39,14 @@ public class Technician implements Serializable {
 	
 	public Technician() {
 		this.myJobs = new ArrayList<Job>();
+		this.completedJobs = new ArrayList<Job>();
 		this.equipmentList = new ArrayList<Equipment>();
 		this.id = this.name;
 		this.password = "";
-		
+		this.phoneNumber = "";
+		this.stats = "";
+		this.status = "";
+		this.notice = "";
 	}
 	
 	/**
