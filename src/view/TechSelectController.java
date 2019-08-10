@@ -46,6 +46,7 @@ public class TechSelectController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Database database = Database.getInstance();
 		
+		if(database.getInstance().getTechnicians().isEmpty()) {
 		Technician tempTech = new Technician();
 		tempTech.setName("Jason");
 		tempTech.setPhoneNumber("123456789");
@@ -75,10 +76,11 @@ public class TechSelectController implements Initializable{
 			tempTech.completedJob(work);
 		}
 		database.getTechnicians().add(tempTech);
-		
+		}
 		ObservableList<Technician> something = FXCollections.observableArrayList(database.getTechnicians());
 		
 		techListView.setItems(something);
+		
 	}
 	
 	@FXML
