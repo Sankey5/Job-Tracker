@@ -11,11 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Database;
 import model.Equipment;
 import model.Technician;
@@ -59,6 +61,9 @@ public class TechnicianPopupController implements EventHandler<ActionEvent>, Ini
 		}
 		Technician technician = new Technician(nameTextField.getText());
 		technician.setEquipmentList(equipmentList);
+		database.addTechnician(technician);
+		Stage thisStage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
+		thisStage.close();
 	}
 	public void showWarning(String warning) {
 		warningLabel.setText(warning);
