@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Job implements Serializable{
+public class Job implements Serializable, Comparable{
 	/**
 	 * 
 	 */
@@ -46,6 +46,14 @@ public class Job implements Serializable{
 		this.techName = "";
 		this.details = "No additional details.";
 		priority = Priority.Medium;
+	}
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
 	}
 
 	public void setTechName(String name) {
@@ -108,6 +116,13 @@ public class Job implements Serializable{
 
 	public void setDateFinished(LocalDate dateFinished) {
 		this.dateFinished = dateFinished;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		Job temp = (Job) arg0;
+		
+		return this.getDeadlineEntry().compareTo(temp.getDeadlineEntry());
 	}
 
 }

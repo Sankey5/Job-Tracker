@@ -3,7 +3,6 @@
 }
 
 .button {
-	-fx-font-size: 16pt;
 	-fx-shape: "M 300 200 L 500 200 L 500 450 L 300 450 L 300 200 ";
 	-fx-background-color: #039BE5;
 	-fx-text-fill: white;

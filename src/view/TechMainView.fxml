@@ -49,13 +49,13 @@
                         <VBox alignment="TOP_CENTER" prefHeight="351.0" prefWidth="354.0">
                            <children>
                               <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Express Jobs" />
-                              <ListView fx:id="currentJobsListView" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                              <ListView fx:id="expressJobsListView" editable="true" onMouseClicked="#handleExpressMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
                                       <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                        <MenuItem mnemonicParsing="false" onAction="#expressMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#expressMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#expressMenuDetails" text="Change Details" />
                                       </items>
                                     </ContextMenu>
                                  </contextMenu>
@@ -65,13 +65,13 @@
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
                            <children>
                               <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Regular Jobs" />
-                              <ListView fx:id="currentJobsListView1" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                              <ListView fx:id="regularJobsListView" editable="true" onMouseClicked="#handleRegularMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
                                        <items>
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                          <MenuItem mnemonicParsing="false" onAction="#regularMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#regularMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#regularMenuDetails" text="Change Details" />
                                        </items>
                                     </ContextMenu>
                                  </contextMenu>
@@ -81,13 +81,13 @@
                         <VBox alignment="TOP_CENTER" layoutX="364.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
                            <children>
                               <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Slow Jobs" />
-                              <ListView fx:id="currentJobsListView11" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                              <ListView fx:id="slowJobsListView" editable="true" onMouseClicked="#handleSlowMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
                                        <items>
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
-                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                          <MenuItem mnemonicParsing="false" onAction="#slowMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#slowMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#slowMenuDetails" text="Change Details" />
                                        </items>
                                     </ContextMenu>
                                  </contextMenu>
@@ -127,7 +127,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick2" prefHeight="218.0" prefWidth="389.0">
+                                    <ListView fx:id="availableJobsListView" onMouseClicked="#handleAvailableMouseClick" prefHeight="218.0" prefWidth="389.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                        <contextMenu>
                                           <ContextMenu>
                                             <items>
@@ -147,7 +147,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="completedJobsListView" onMouseClicked="#handleMouseClick3" prefHeight="218.0" prefWidth="334.0">
+                              <ListView fx:id="completedJobsListView" onMouseClicked="#handleCompletedMouseClick" prefHeight="218.0" prefWidth="334.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
                                       <items>
