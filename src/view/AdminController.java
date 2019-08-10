@@ -18,20 +18,31 @@ package view;
 	import java.io.IOException;
 	import java.net.URL;
 	import java.util.ArrayList;
-	import java.util.ResourceBundle;
-
-	import javafx.collections.FXCollections;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ResourceBundle;
+	import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
+import javafx.collections.FXCollections;
 	import javafx.collections.ObservableList;
 	import javafx.event.ActionEvent;
 	import javafx.event.EventHandler;
 	import javafx.fxml.FXML;
 	import javafx.fxml.FXMLLoader;
 	import javafx.fxml.Initializable;
-	import javafx.scene.Parent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 	import javafx.scene.Scene;
-	import javafx.scene.control.ListView;
-	import javafx.scene.control.MenuButton;
-	import javafx.scene.control.TextField;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 	import javafx.stage.Stage;
 	import launcher.Launcher;
 	import model.*;
@@ -49,15 +60,23 @@ package view;
 		private ListView<Equipment> inventoryListView;
 		@FXML
 		private ListView<Job> assignedJobsListView, unassignedJobsListView;
+		@FXML 
+		private ListView<Technician> technicianListView;
 		@FXML
-		private MenuButton actionMenuButton;
+		private MenuButton actionMenuButton, memoMenuButton;
 		@FXML
-		private TextField memoTextField;
+		private Label sentLabel;
+		@FXML
+		private TextArea memoTextArea;
+		@FXML
+		private CheckMenuItem sendAllCheckMenuItem;
 		
 		private Database database;
+		private HashMap<CheckMenuItem, Technician> memoMap;
 		
 		public AdminController() {
 			database = Database.getInstance();
+			this.memoMap = new HashMap<>();
 		}
 		
 		/**
@@ -143,17 +162,60 @@ package view;
 		
 		@Override
 		public void handle(ActionEvent event) {
-			// TODO Auto-generated method stub
-			
 		}
 
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			ObservableList<Customer> clients = FXCollections.observableArrayList(database.getCustomers());
+		public void updateView() {
+			ArrayList<Customer> customers = database.getCustomers();
+			ObservableList<Customer> clients = FXCollections.observableArrayList(customers);
 			clientListView.itemsProperty().set(clients);
 			inventoryListView.itemsProperty().set(FXCollections.observableArrayList(database.getEquipment()));
 			assignedJobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getAssignedJobs()));
 			unassignedJobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getAvailableJobs()));
+			technicianListView.itemsProperty().set(FXCollections.observableArrayList(database.getTechnicians()));
+			
+			for(Technician technician : database.getTechnicians()) {
+				CheckMenuItem item = new CheckMenuItem(technician.getName());
+				memoMenuButton.getItems().add(item);
+				memoMap.put(item, technician);
+			}
 		}
+		public void sendMemo() {
+			List<MenuItem> items = (List<MenuItem>) memoMenuButton.getItems();
+			String message = memoTextArea.getText();
+			for(MenuItem item : items) {
+				if(sendAllCheckMenuItem.isSelected() || ((CheckMenuItem)item).isSelected()){
+					memoMap.get(item).setNotice(message);
+				}
+			}
+			memoTextArea.clear();
+			sentLabel.setText("Message sent!");
+		}
+		 
+		public void handleTechnicianContextMenu() {
+			Technician tech = (Technician) (technicianListView.getSelectionModel().getSelectedItem());
+			ContextMenu techMenu = new ContextMenu();
+			Menu equipmentMenu = new Menu("Add Equipent");
+			for(Equipment equipment : database.getEquipment()) {
+				MenuItem item = new MenuItem(equipment.toString());
+				item.setOnAction(e->tech.addEquipment(equipment));
+				equipmentMenu.getItems().add(item);
+			}
+			techMenu.getItems().add(equipmentMenu);
+			MenuItem statusItem = new MenuItem("Set Status");
+			statusItem.setOnAction(e->tech.setStatus(promptStatus()));
+			techMenu.getItems().add(statusItem);
+			technicianListView.setContextMenu(techMenu);
+		}
+		
+		public String promptStatus() {
+			TextInputDialog prompt = new TextInputDialog();
+			prompt.showAndWait();
+			return prompt.getEditor().getText();
+		}
+		@Override
+		public void initialize(URL location, ResourceBundle resources) {
+			updateView();
+			technicianListView.setOnContextMenuRequested(e->handleTechnicianContextMenu());
+		}	
 		
 	}
