@@ -196,7 +196,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuComplete(ActionEvent event) {
@@ -208,7 +208,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuRemove(ActionEvent event) {
@@ -221,7 +221,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuDetails(ActionEvent event) {
@@ -236,7 +236,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuComplete(ActionEvent event) {
@@ -248,7 +248,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuRemove(ActionEvent event) {
@@ -261,7 +261,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuDetails(ActionEvent event) {
@@ -276,7 +276,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuComplete(ActionEvent event) {
@@ -288,7 +288,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuRemove(ActionEvent event) {
@@ -301,7 +301,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuDetails(ActionEvent event) {
@@ -316,7 +316,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void completedMenuReturn(ActionEvent event) {
@@ -329,7 +329,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.getCompletedJobs().remove(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	@FXML
