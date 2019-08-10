@@ -33,10 +33,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Database implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2253136265747190951L;
 	private static Database database;
 	private static String customerFileName, equipmentFileName, jobFileName, technicianFileName;
 	private static final String dataFileName = "src/data/database";
-	private Logger logger;
+	private static Logger logger;
 	
 	// what is this for?
 	private Technician currentTech;
