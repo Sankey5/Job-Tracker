@@ -49,9 +49,9 @@ public class JobPopUpController implements Initializable {
     @FXML
     void handleNewEquipment(ActionEvent event) {
     	System.out.print("asdfdf");
-    	equipmentSerialText.setVisible(true);
-    	equipmentMakeText.setVisible(true);
-    	equipmentModelText.setVisible(true);
+    	equipmentSerialText.setDisable(false);
+    	equipmentMakeText.setDisable(false);
+    	equipmentModelText.setDisable(false);
     	creatingEquipment = true;
     }
 
@@ -159,9 +159,13 @@ public class JobPopUpController implements Initializable {
 
 	private void populateEquipmentFields(Equipment equipment) {
 		equipmentMakeText.setText(equipment.getEquipmentMake());
+		equipmentMakeText.setDisable(true);
 		equipmentModelText.setText(equipment.getEquipmentModel());
+		equipmentModelText.setDisable(true);
 		equipmentSerialText.setText(equipment.getEquipmentSerial());
+		equipmentSerialText.setDisable(true);
 		creatingEquipment = false;
+		
 	}
 	
 	@Override
