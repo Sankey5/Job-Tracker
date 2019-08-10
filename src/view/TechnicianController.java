@@ -197,7 +197,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			updateJobQueues();
 			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		} else {
-			detailsTextArea.appendText("\n\n\nUnable to add job!!");
+			detailsTextArea.appendText("\n\n\n"+available.getEquipment().toString().replace("\n","")+" required for this job.");
 		}
 		extrasTextArea.setText(tech.toExtras());
 	}
