@@ -70,8 +70,8 @@ public class testDatabase {
 
 		}
 		*/
-		Equipment carJack = new Equipment("Champion", "Jack5000", "5001");
-		Equipment wrench = new Equipment("Stanley", "big wrench", "5002");
+		Equipment carJack = new Equipment("Champion", "Jack5000", "kjw-01");
+		Equipment wrench = new Equipment("Stanley", "big wrench", "3002");
 		ArrayList<Equipment> inventory = new ArrayList<Equipment>();
 		inventory.add(carJack);
 		inventory.add(wrench);
