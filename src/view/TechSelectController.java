@@ -15,6 +15,7 @@ package view;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -57,7 +58,7 @@ public class TechSelectController implements Initializable{
 		for(int i = 0; i < j; i++) {
 			Customer guy = new Customer("Place"+i, "Person"+i, 123456789, "thisguy@email"+i);
 			Equipment tool = new Equipment("Make"+i, "Model"+i, "Serial"+i);
-			Job work = new Job(guy, tool, LocalDate.now());
+			Job work = new Job(guy, tool, LocalDate.of(2020, Month.APRIL, i+1));
 			tempTech.addEquipment(tool);
 			tempTech.giveJob(work);
 		}
@@ -65,13 +66,14 @@ public class TechSelectController implements Initializable{
 		for(int i = j; i < j + 4; i++) {
 			Customer guy = new Customer("Place"+i, "Person"+i, 123456789, "thisguy@email"+i);
 			Equipment tool = new Equipment("Make"+(i-2), "Model"+(i-2), "Serial"+(i-2));
-			Job work = new Job(guy, tool, LocalDate.now());
+			Job work = new Job(guy, tool, LocalDate.of(2020, Month.FEBRUARY, i+1));
 			database.addJob(work);
 		}
 		for(int i = 0; i < 3;i++) {
 			Customer guy = new Customer("Place"+(i+10), "Person"+(i+10), 123456789, "thisguy@email"+(i+10));
 			Equipment tool = new Equipment("Make"+i, "Model"+i, "Serial"+i);
-			Job work = new Job(guy, tool, LocalDate.now());
+			LocalDate date = LocalDate.of(2020, Month.AUGUST, i+1);
+			Job work = new Job(guy, tool, date);
 			tempTech.giveJob(work);
 			tempTech.completedJob(work);
 		}

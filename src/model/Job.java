@@ -26,6 +26,7 @@ public class Job implements Serializable{
 	private static final long serialVersionUID = 1L;
 	// determines position in priority queue
 	private LocalDate deadlineEntry;
+	private LocalDate dateFinished;
 	private Customer customer;
 	private Equipment equipment;
 	private String details;
@@ -80,15 +81,24 @@ public class Job implements Serializable{
 	}
 	
 	public String toString() {
-		return this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake();
+		return this.deadlineEntry + ": " +this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake();
 	}
 	
 	public String toDescription() {
 		String header = toString() + "\n";
 		String subject = this.customer.toString() + "\n";
 		String body = "Tool needed:" +  this.equipment.toString()
-                    + "Details: " + this.getMemo();
+					+ "Deadline: " + this.deadlineEntry 
+                    + "\nDetails: " + this.getMemo();
 		return header + subject + body;
+	}
+
+	public LocalDate getDateFinished() {
+		return dateFinished;
+	}
+
+	public void setDateFinished(LocalDate dateFinished) {
+		this.dateFinished = dateFinished;
 	}
 
 }
