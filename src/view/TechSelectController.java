@@ -67,6 +67,13 @@ public class TechSelectController implements Initializable{
 			Job work = new Job(guy, tool, LocalDate.now());
 			database.addJob(work);
 		}
+		for(int i = 0; i < 3;i++) {
+			Customer guy = new Customer("Place"+(i+10), "Person"+(i+10), 123456789, "thisguy@email"+(i+10));
+			Equipment tool = new Equipment("Make"+i, "Model"+i, "Serial"+i);
+			Job work = new Job(guy, tool, LocalDate.now());
+			tempTech.giveJob(work);
+			tempTech.completedJob(work);
+		}
 		database.getTechnicians().add(tempTech);
 		
 		ObservableList<Technician> something = FXCollections.observableArrayList(database.getTechnicians());

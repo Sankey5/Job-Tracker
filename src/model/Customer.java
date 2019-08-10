@@ -63,6 +63,6 @@ public class Customer implements Serializable {
 	
 	public String toString() {
 		return getCustomerName() + " - #" + getCustomerPhoneNumber() + "\n"
-			 + getCustomerEmail() + getCustomerCompanyName();
+			 + "Email: " + getCustomerEmail() + "\nCompany Name: " + getCustomerCompanyName();
 	}
 }
