@@ -19,9 +19,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="678.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="678.0" prefWidth="739.0">
+<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox>
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="130.0" prefWidth="739.0" spacing="10.0">
                <children>
@@ -40,7 +40,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="351.0" prefWidth="735.0">
+            <HBox alignment="CENTER" prefHeight="351.0" prefWidth="735.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="215.0">
                      <children>
@@ -64,24 +64,28 @@
                   </VBox>
                </children>
             </HBox>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="160.0" text="Available Jobs">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="163.0" prefWidth="585.0" spacing="10.0">
+            <VBox alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="160.0" text="Available Jobs">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="163.0" prefWidth="585.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <DatePicker fx:id="startDatePicker" promptText="Start" showWeekNumbers="true" />
-                        <DatePicker fx:id="endDatePicker" promptText="End" />
-                        <Button fx:id="updateButton" mnemonicParsing="false" text="Update" />
+                        <VBox alignment="CENTER">
+                           <children>
+                              <DatePicker fx:id="startDatePicker" promptText="Start" showWeekNumbers="true" />
+                              <DatePicker fx:id="endDatePicker" promptText="End" />
+                              <Button fx:id="updateButton" mnemonicParsing="false" text="Update" />
+                           </children>
+                        </VBox>
+                        <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick" prefHeight="163.0" prefWidth="389.0" />
                      </children>
-                  </VBox>
-                  <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick" prefHeight="163.0" prefWidth="389.0" />
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </FlowPane>
-   </children>
-</AnchorPane>
+      </VBox>
+   </center>
+</BorderPane>
