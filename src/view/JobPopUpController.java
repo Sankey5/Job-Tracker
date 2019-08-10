@@ -48,6 +48,7 @@ public class JobPopUpController implements Initializable {
     }
     @FXML
     void handleNewEquipment(ActionEvent event) {
+    	System.out.print("asdfdf");
     	equipmentSerialText.setVisible(true);
     	equipmentMakeText.setVisible(true);
     	equipmentModelText.setVisible(true);
@@ -55,7 +56,7 @@ public class JobPopUpController implements Initializable {
     }
 
     @FXML
-    void handleSelectCustomer(ActionEvent event) {
+    void handleSelectCustomer() {
     	customerEmailText.setVisible(false);
     	customerPhoneNumberText.setVisible(false);
     	customerCompanyText.setVisible(false);
@@ -65,6 +66,7 @@ public class JobPopUpController implements Initializable {
     }
     @FXML
     void handleSelectEquipment(ActionEvent event) {
+    	System.out.print("Easdf");
     	equipmentSerialText.setVisible(false);
     	equipmentMakeText.setVisible(false);
     	equipmentModelText.setVisible(false);
@@ -154,10 +156,10 @@ public class JobPopUpController implements Initializable {
 		for(Customer customer : Database.getInstance().getCustomers()) {
 			customerMenuButton.getItems().add(new CheckMenuItem(customer.getCustomerName()));
 		}
+		customerMenuButton.setOnAction(e -> handleSelectCustomer());
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
 			equipmentMenuButton.getItems().add(new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel()));
 		}
-		//customerMenuButton.setOn
 	}
     
 }
