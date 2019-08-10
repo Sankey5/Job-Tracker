@@ -46,41 +46,14 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private TextField editField;
 	
-	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList;
+	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList, availablejobs, completedjobs;
 	
 	private Technician tech;
 	private Database database;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tech = MainController.getInstance().getSelectedTech();
-		database = Database.getInstance();
-		
-		ObservableList<Job> availablejobs = FXCollections.observableArrayList(database.getJobs());
-		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
-		
-		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
-		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
-		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
-		
-		for(Job temp: tech.getMyJobs()) {
-			if(temp.getPriority() == Priority.High)
-				expressJobsUnsorted.add(temp);
-			if(temp.getPriority() == Priority.Medium)
-				regularJobsUnsorted.add(temp);
-			if(temp.getPriority() == Priority.Low)
-				slowJobsUnsorted.add(temp);
-		}
-		
-		expressObservableList = FXCollections.observableArrayList(expressJobsUnsorted);
-		regularObservableList = FXCollections.observableArrayList(regularJobsUnsorted);
-		slowObservableList = FXCollections.observableArrayList(slowJobsUnsorted);
-		
-		expressJobsListView.setItems(expressObservableList);
-		regularJobsListView.setItems(regularObservableList);
-		slowJobsListView.setItems(slowObservableList);
-		availableJobsListView.setItems(availablejobs);
-		completedJobsListView.setItems(completedjobs);
+		updateJobQueues();
 		
 		if(tech.getMyJobs().size() == 0) {
 	
@@ -179,6 +152,12 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	}
 	
 	private void updateJobQueues() {
+		tech = MainController.getInstance().getSelectedTech();
+		database = Database.getInstance();
+		
+		availablejobs = FXCollections.observableArrayList(database.getJobs());
+		completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
+		
 		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
 		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
 		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
@@ -199,6 +178,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		expressJobsListView.setItems(expressObservableList);
 		regularJobsListView.setItems(regularObservableList);
 		slowJobsListView.setItems(slowObservableList);
+		availableJobsListView.setItems(availablejobs);
+		completedJobsListView.setItems(completedjobs);
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
@@ -215,7 +196,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuComplete(ActionEvent event) {
@@ -227,7 +208,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuRemove(ActionEvent event) {
@@ -240,7 +221,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuDetails(ActionEvent event) {
@@ -255,7 +236,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuComplete(ActionEvent event) {
@@ -267,7 +248,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuRemove(ActionEvent event) {
@@ -280,7 +261,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void regularMenuDetails(ActionEvent event) {
@@ -295,7 +276,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuComplete(ActionEvent event) {
@@ -307,7 +288,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuRemove(ActionEvent event) {
@@ -320,7 +301,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		updateJobQueues();
 		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void slowMenuDetails(ActionEvent event) {
@@ -335,7 +316,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		current.setMemo(editField.getText());
 		detailsTextArea.setText(current.toDescription());
 		editField.clear();
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void completedMenuReturn(ActionEvent event) {
@@ -346,10 +327,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
 		tech.giveJob(current);
 		tech.getCompletedJobs().remove(current);
-		database.getJobs().add(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		
+		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	@FXML
