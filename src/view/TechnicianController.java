@@ -79,34 +79,46 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	@FXML
 	public void handleMouseClick(MouseEvent click) {
-		
+			
+		if(currentJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 			Job current = currentJobsListView.getSelectionModel().getSelectedItem();
+		
 			for (int i = 0; i < tech.getMyJobs().size(); i++) {
 				if(current.equals(tech.getMyJobs().get(i))) {
 					detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
-				}
-			}	
-			
+				} 
+			}
+		}
 	}
 	@FXML
 	public void handleMouseClick2(MouseEvent click) {
 		
+		if(availableJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 			Job available = availableJobsListView.getSelectionModel().getSelectedItem();
 			for (int i = 0; i < database.getJobs().size(); i++) {
 				if(available.equals(database.getJobs().get(i))) {
 					detailsTextArea.setText(database.getJobs().get(i).toDescription());
 				}
 			}	
+		}
 	}
 	@FXML
 	public void handleMouseClick3(MouseEvent click) {
 		
+		if(completedJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
 			Job completed = completedJobsListView.getSelectionModel().getSelectedItem();
 			for (int i = 0; i < tech.getCompletedJobs().size(); i++) {
 				if(completed.equals(tech.getCompletedJobs().get(i))) {
 					detailsTextArea.setText(tech.getCompletedJobs().get(i).toDescription());
 				}
 			}	
+		}
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
@@ -116,7 +128,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			database.getInstance().getJobs().remove(available);
 			currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 			availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
-			
+		} else {
+			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
 	}
 	
