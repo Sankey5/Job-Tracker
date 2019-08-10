@@ -45,7 +45,7 @@ public class Job implements Serializable{
 		this.deadlineEntry = deadlineEntry;
 		this.techName = "";
 		this.details = "No additional details.";
-		priority = Priority.Medium;
+		setPriority(Priority.Medium);
 	}
 
 	public void setTechName(String name) {
@@ -108,6 +108,14 @@ public class Job implements Serializable{
 
 	public void setDateFinished(LocalDate dateFinished) {
 		this.dateFinished = dateFinished;
+	}
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
 	}
 
 }
