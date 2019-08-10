@@ -27,7 +27,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="847.0" spacing="200.0">
                <children>
                   <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backAction" prefHeight="31.0" prefWidth="149.0" text="Back" textAlignment="CENTER" />
-                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="317.0" text="Techinican Main Page " textAlignment="CENTER" textFill="#e13535">
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="426.0" text="Techinican Main Page " textAlignment="CENTER" textFill="#e13535">
                      <font>
                         <Font size="32.0" />
                      </font>

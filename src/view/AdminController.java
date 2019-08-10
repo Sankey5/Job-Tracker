@@ -124,7 +124,21 @@ package view;
 			MainController.switchView(ViewType.Login);
 		}
 		public void handleAddTechnician() {
-			
+			try {
+				Stage popupWindow = new Stage();
+				FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/PopUpAddTechnician.fxml"));
+				TechnicianPopupController controller = new TechnicianPopupController();
+				loader.setController(controller);
+				Parent root = loader.load();
+				popupWindow.setScene(new Scene(root));
+				popupWindow.show();
+				/*popupWindow.setOnHidden(
+					e-> clientListView.itemsProperty().set(
+					FXCollections.observableArrayList(database.getCustomers())));*/
+			}
+			catch (IOException e){
+				e.printStackTrace();
+			}
 		}
 		
 		@Override

@@ -57,12 +57,13 @@ public class Database implements Serializable {
 	
 	private Database() {
 		logger = Logger.getLogger(this.getClass().getName());
-		setDefaultFileNames();
+	//	setDefaultFileNames();
 		this.technicians = new ArrayList<Technician>();
 		this.customers = new ArrayList<Customer>();
 		this.jobs = new ArrayList<Job>();
 		this.equipment = new ArrayList<Equipment>();
-		loadDatabase();
+		load();
+	//	loadDatabase();
 	}
 
 	/**
@@ -115,22 +116,25 @@ public class Database implements Serializable {
 	}
 	
 	
-	public void loadDatabase() {
+/*	public void loadDatabase() {
 		loadTechnicians();
 		loadCustomers();
 		loadEquipment();
 		loadJobs();
 	}
+	
+	
+	
 	/**
 	 * Simple default file names
 	 * TODO: Load these in from a settings file
-	 */
+	 *
 	public void setDefaultFileNames() {
 		customerFileName = "src/data/customers";
 		equipmentFileName = "src/data/equipment";
 		jobFileName = "src/data/jobs";
 		technicianFileName = "src/data/technicians";
-	}
+	}*/
 	
 	public void save() {
 		try {
@@ -149,156 +153,25 @@ public class Database implements Serializable {
             e.printStackTrace(); 
         } 
 	}
-	
 
-	public void loadTechnicians() {
+	public void load(){
 		try {
-			FileInputStream file = new FileInputStream(technicianFileName);
+			FileInputStream file = new FileInputStream(dataFileName);
 			ObjectInputStream objIn = new ObjectInputStream(file);
-			this.technicians = (ArrayList<Technician>)objIn.readObject();
+			database = (Database) objIn.readObject();
 			file.close();
 			objIn.close();
 		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "Technician file not found, one is being created in the default file name: "
-					+ technicianFileName);
-			saveTechnicians();
-		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	public void saveTechnicians() {
-		try {
-			FileOutputStream file = new FileOutputStream(technicianFileName);
-			ObjectOutputStream objOut = new ObjectOutputStream(file);
-			objOut.writeObject(this.technicians);
-			System.out.print("new file\n");
-			file.close();
-			objOut.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.SEVERE, "Technician file could not be created default file name: "
-					+ technicianFileName);
+			logger.log(Level.SEVERE, "Data file could not be created default file name: "
+					+ dataFileName);
 			e.printStackTrace();
 		}
 		catch (IOException e) { 
             e.printStackTrace(); 
         } 
-	}
-	
-	public void loadCustomers() {
-		try {
-			FileInputStream file = new FileInputStream(customerFileName);
-			ObjectInputStream objIn = new ObjectInputStream(file);
-			this.customers = (ArrayList<Customer>)objIn.readObject();
-			file.close();
-			objIn.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "Customer file not found, one is being created in the default file name: "
-					+ customerFileName);
-			saveCustomers();
-		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	public void saveCustomers() {
-		try {
-			FileOutputStream file = new FileOutputStream(customerFileName);
-			ObjectOutputStream objOut = new ObjectOutputStream(file);
-			objOut.writeObject(this.customers);
-			file.close();
-			objOut.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "Customers could not be created with default file name: "
-					+ customerFileName);
+		catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-	}
-	
-	public void loadEquipment() {
-		try {
-			FileInputStream file = new FileInputStream(equipmentFileName);
-			ObjectInputStream objIn = new ObjectInputStream(file);
-			this.equipment = (ArrayList<Equipment>)objIn.readObject();
-			file.close();
-			objIn.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "Equipment file not found, one is being created in the default file name: "
-					+ equipmentFileName);
-			saveEquipment();
-		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}		
-	}
-	
-	public void saveEquipment() {
-		try {
-			FileOutputStream file = new FileOutputStream(equipmentFileName);
-			ObjectOutputStream objOut = new ObjectOutputStream(file);
-			objOut.writeObject(this.equipment);
-			file.close();
-			objOut.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.SEVERE, "Equipment could not be created with default file name: "
-					+ equipmentFileName);
-			e.printStackTrace();
-		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-	}
-	
-	
-	public void loadJobs() {
-		try {
-			FileInputStream file = new FileInputStream(jobFileName);
-			ObjectInputStream objIn = new ObjectInputStream(file);
-			this.jobs = (ArrayList<Job>)objIn.readObject();
-			file.close();
-			objIn.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.WARNING, "Job file not found, one is being created in the default file name: "
-					+ jobFileName);
-			saveJobs();
-		}
-		catch (IOException e) { 
-			e.printStackTrace(); 
-		} 
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	public void saveJobs() {
-		try {
-			FileOutputStream file = new FileOutputStream(jobFileName);
-			ObjectOutputStream objOut = new ObjectOutputStream(file);
-			objOut.writeObject(this.jobs);
-			file.close();
-			objOut.close();
-		} catch (FileNotFoundException e) {
-			logger.log(Level.SEVERE, "Job could not be created with default file name: "
-					+ jobFileName);
-			e.printStackTrace();
-		}
-		catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
 	}
 	
 	//getter and setters

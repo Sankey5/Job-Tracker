@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -151,10 +152,10 @@ public class JobPopUpController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		for(Customer customer : Database.getInstance().getCustomers()) {
-			customerMenuButton.getItems().add(new MenuItem(customer.getCustomerName()));
+			customerMenuButton.getItems().add(new CheckMenuItem(customer.getCustomerName()));
 		}
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
-			equipmentMenuButton.getItems().add(new MenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel()));
+			equipmentMenuButton.getItems().add(new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel()));
 		}
 		//customerMenuButton.setOn
 	}
