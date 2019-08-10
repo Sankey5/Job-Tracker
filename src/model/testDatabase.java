@@ -128,6 +128,23 @@ public class testDatabase {
 		database.addJob(matthewJob);
 		bill.addEquipment(wiresplitter);
 		john.addEquipment(solder);
+		
+		Equipment solder2 = new Equipment("Watts", "Solder", "S-07");
+		Equipment wiresplitter2 = new Equipment("Jameson", "wiresplitter", "6305");
+		database.addEquipment(solder2);
+		database.addEquipment(wiresplitter2);
+		Customer carlHen = new Customer("AutoZone", "Carl Henries", 2101578321, "Carl@Autozone.com");
+		Customer hannahBurns = new Customer("Resident", "Hannah Burns", 2108357123, "Hannah@Gmail.com");
+		database.addCustomer(carlHen);
+		database.addCustomer(hannahBurns);
+		Job carlJob = new Job(carlHen, solder2, LocalDate.of(2019, 8, 25));
+		Job hannahJob = new Job(hannahBurns, wiresplitter2, LocalDate.of(2019, 8, 13));
+		carlJob.setPriority(Priority.Low);
+		hannahJob.setPriority(Priority.Medium);
+		database.addJob(carlJob);
+		database.addJob(hannahJob);
+		
+		
 		database.save();
 	}
 }
