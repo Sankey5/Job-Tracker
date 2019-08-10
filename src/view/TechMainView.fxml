@@ -24,21 +24,22 @@
    <center>
       <VBox>
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="847.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="847.0" spacing="10.0">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="90.0">
-                     <children>
-                        <Button fx:id="logoutButton" layoutX="-84.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="31.0" prefWidth="149.0" text="Logout" />
-                     </children>
-                  </Pane>
-                  <Label text="Techinican Main Page " textFill="#e13535">
+                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backAction" prefHeight="31.0" prefWidth="149.0" text="Back" textAlignment="CENTER" />
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="317.0" text="Techinican Main Page " textAlignment="CENTER" textFill="#e13535">
                      <font>
                         <Font size="32.0" />
                      </font>
                      <HBox.margin>
-                        <Insets top="30.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
+                  <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="35.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="31.0" prefWidth="149.0" text="Logout" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="351.0" prefWidth="735.0" BorderPane.alignment="CENTER">

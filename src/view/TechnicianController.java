@@ -48,32 +48,33 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		Screen screen = Screen.getPrimary();
-		Launcher.stage.setX(0);
-		Launcher.stage.setY(0);
-		Launcher.stage.setHeight(screen.getBounds().getHeight());
-		Launcher.stage.setWidth(screen.getBounds().getWidth());
 		tech = MainController.getInstance().getSelectedTech();
 		database = Database.getInstance();
-		ObservableList<Job> availablejobs = FXCollections.observableArrayList(Database.getInstance().getJobs());
+		
+		ObservableList<Job> availablejobs = FXCollections.observableArrayList(database.getJobs());
 		ObservableList<Job> currentjobs = FXCollections.observableArrayList(tech.getMyJobs());
 		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
+		
 		currentJobsListView.setItems(currentjobs);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
+		
 		if(tech.getMyJobs().size() == 0) {
 	
 		} else {
 			detailsTextArea.setText(tech.getMyJobs().get(0).toDescription());
 		}
-		extrasTextArea.setText(tech.toExtras());
 		
 	}
 	
-	
+	@FXML
 	public void logoutAction(ActionEvent event) {
 		MainController.switchView(ViewType.Login);
+	}
+	
+	@FXML
+	public void backAction(ActionEvent event) {
+		MainController.switchView(ViewType.TechSelect);
 	}
 	
 	@FXML
