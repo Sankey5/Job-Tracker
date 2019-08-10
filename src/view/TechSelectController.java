@@ -46,7 +46,7 @@ public class TechSelectController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Database database = Database.getInstance();
-		
+
 		ObservableList<Technician> something = FXCollections.observableArrayList(database.getTechnicians());
 		
 		techListView.setItems(something);
