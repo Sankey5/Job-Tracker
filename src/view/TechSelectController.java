@@ -76,7 +76,7 @@ public class TechSelectController implements Initializable{
 	
 	@FXML
     void selectTechnician(MouseEvent event) {
-		if(event.getClickCount() == 2) {
+		if(event.getClickCount() < 2) {
 			if(event.getSource() == null) {
 				
 			} else {
