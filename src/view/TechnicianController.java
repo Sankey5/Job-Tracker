@@ -181,6 +181,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		slowJobsListView.setItems(slowObservableList);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
+		
+		filterButton.setText("All Jobs");
+		fired = false;
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {

@@ -48,6 +48,7 @@ public class JobPopUpController implements Initializable {
     	customerNameText.setDisable(false);
     	customerNameText.clear();
     	creatingCustomer = true;
+
     }
     @FXML
     void handleNewEquipment(ActionEvent event) {
@@ -173,6 +174,7 @@ public class JobPopUpController implements Initializable {
 			item.setOnAction(e-> populateEquipmentFields(equipment));
 			equipmentMenuButton.getItems().add(item);
 		}
+		
 		
 		
 	}
