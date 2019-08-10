@@ -1,6 +1,7 @@
 
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,8 +10,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -21,6 +25,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import launcher.Launcher;
 import model.Database;
 import model.Job;
@@ -183,6 +188,25 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		extrasTextArea.setText(tech.toExtras());
 		}
 	}
+	
+	@FXML
+    void handleNewJob(ActionEvent event) {
+		try {
+			Stage popupWindow = new Stage();
+			FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/PopUpAddJob.fxml"));
+			JobPopUpController controller = new JobPopUpController();
+			loader.setController(controller);
+			Parent root = loader.load();
+			popupWindow.setScene(new Scene(root));
+			popupWindow.show();
+			/*popupWindow.setOnHidden(
+				e-> clientListView.itemsProperty().set(
+				FXCollections.observableArrayList(database.getCustomers())));*/
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+    }
 	
 	@Override
 	public void handle(ActionEvent event) {
