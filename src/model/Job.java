@@ -31,18 +31,20 @@ public class Job implements Serializable{
 	private Equipment equipment;
 	private String details;
 	private String techName;
-	
+	private Priority priority;
 	/**@author Kenny
 	 * 
 	 * @param customer - customer who requested the job
 	 * @param equipment - tooling required for completing the job
 	 * @param deadlineEntry - deadline for the job
 	 */
-	public Job(Customer customer, Equipment equipment, LocalDate deadlineEntry) {
+	public Job(Customer customer, Equipment equipment, LocalDate deadlineEntry, LocalDate dateFinished) {
 		this.customer = customer;
 		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;
+		this.techName = "";
 		this.details = "No additional details.";
+		priority = Priority.Medium;
 	}
 
 	public void setTechName(String name) {
