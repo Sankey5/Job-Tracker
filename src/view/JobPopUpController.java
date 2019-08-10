@@ -35,7 +35,6 @@ public class JobPopUpController implements Initializable {
     private boolean creatingCustomer, creatingEquipment;
     
     public JobPopUpController() {
-    	
     }
 
     @FXML
