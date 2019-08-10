@@ -113,7 +113,7 @@ public class MainController implements Initializable {
 			}
 			Parent view = loader.load();
 			rootPane.setCenter(view);
-			Launcher.stage.sizeToScene();
+			//Launcher.stage.sizeToScene();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
