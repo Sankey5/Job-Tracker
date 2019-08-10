@@ -153,6 +153,23 @@ public class Database implements Serializable {
 		}
 	}
 	
+	public ArrayList<Job> getAssignedJobs(){
+		ArrayList<Job> assignedJobs = new ArrayList<Job>();
+		for(Technician technician : this.getTechnicians()) {
+			for(Job job: technician.getMyJobs()) {
+				assignedJobs.add(job);
+			}
+		}
+		return assignedJobs;
+	}
+	
+	public ArrayList<Job> getAvailableJobs(){
+		ArrayList<Job> availableJobs = new ArrayList<Job>();
+		availableJobs.addAll(this.getJobs());
+		availableJobs.removeAll(this.getAssignedJobs());
+		return availableJobs;
+	}
+	
 	//getter and setters
 	public ArrayList<Technician> getTechnicians() {
 		return technicians;
