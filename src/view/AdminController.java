@@ -60,12 +60,6 @@ package view;
 			database = Database.getInstance();
 		}
 		
-		
-		
-		public void addMemo() {	
-			database.addMemo(memoTextField.getText());
-		}
-		
 		/**
 		 * Displays a pop up dialogue box where the user can add equipment to the database of existing equipment.
 		 */

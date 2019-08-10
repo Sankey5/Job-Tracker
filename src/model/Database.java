@@ -41,6 +41,7 @@ public class Database {
 	private Logger logger;
 	private Technician currentTech;
 	private static final Pattern nonAlphaNum = Pattern.compile("[^a-zA-Z0-9]");
+	private static final Pattern nonNumber = Pattern.compile("[^0-9]");
 	private static final Pattern emailPattern = Pattern.compile("[a-zA-Z0-9]*?@[a-zA-Z0-9]*?/.[a-zA-Z]{3}");
 	
 	private Database() {
@@ -71,11 +72,15 @@ public class Database {
 	 * @return - True if the input is valid.
 	 * <br>False if the input contains an illegal character
 	 */
-	public static boolean validWord(String input) {
+	public static boolean validateWord(String input) {
 		Matcher m = nonAlphaNum.matcher(input);
-		return m.find();
+		return (! m.find());
 	}
 	
+	public static boolean validateNumber(String input) {
+		Matcher m = nonNumber.matcher(input);
+		return (! m.find());
+	}
 	/**
 	 * Validate an email field. An email can contain any number of alphanumeric characters, 
 	 * '@', any number of alphanumeric characters, '.', and 3 letters (com, net, org, etc.).
@@ -88,9 +93,6 @@ public class Database {
 		return m.matches();
 	}
 	
-	// TODO: build this out
-	public void addMemo(String memo) {
-	}
 	
 	public void loadDatabase() {
 		loadTechnicians();

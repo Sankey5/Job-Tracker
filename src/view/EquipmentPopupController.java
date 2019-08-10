@@ -34,6 +34,10 @@ public class EquipmentPopupController implements Initializable, EventHandler<Act
 	@FXML
 	private Label warningLabel;
 	
+	private final String warnMake = "Please enter only alphanumeric characters for equipment make!";
+	private final String warnModel = "Please enter only alphanumeric characters for equipment model!";
+	private final String warnSerial = "Please enter only numbers for equipment serial number!";
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
@@ -57,8 +61,25 @@ public class EquipmentPopupController implements Initializable, EventHandler<Act
 		thisStage.close();
 	}
 	
-	
+	/**
+	 * This will validate that all fields are valid. If not, it will fail and
+	 * display a warning message to the user
+	 * @return - True if all fields contain valid inputs
+	 * <br> - False if any field contains an illegal character
+	 */
 	public boolean validateFields() {
+		if(! Database.validateWord(makeTextField.getText())) {
+			showWarning(warnMake);
+			return false;
+		}
+		if(! Database.validateWord(modelTextField.getText())) {
+			showWarning(warnModel);
+			return false;
+		}
+		if(! Database.validateNumber(makeTextField.getText())) {
+			showWarning(warnSerial);
+			return false;
+		}
 		return true;
 	}
 	public void showWarning(String warning) {

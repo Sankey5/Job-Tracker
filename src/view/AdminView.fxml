@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
@@ -77,14 +76,6 @@
                      </children>
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="159.0" prefWidth="163.0" spacing="5.0">
-                     <children>
-                        <TextField fx:id="memoTextField" />
-                        <Button mnemonicParsing="false" onAction="#addMemo" text="Add Memo">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Button>
-                     </children>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
