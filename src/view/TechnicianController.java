@@ -35,6 +35,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	private ListView<Job> availableJobsListView, currentJobsListView, completedJobsListView;
 	@FXML
 	private TextArea detailsTextArea, extrasTextArea;
+	@FXML
+	private TextField editField;
 	
 	private Technician tech;
 	private Database database;
@@ -152,6 +154,20 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
 		extrasTextArea.setText(tech.toExtras());
+		}
+	}
+	
+	public void currentMenuDetails(ActionEvent event) {
+		if(currentJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} else {
+			Job current = currentJobsListView.getSelectionModel().getSelectedItem();
+			if(editField.getText().isEmpty()) {
+				return;
+			}
+			current.setMemo(editField.getText());
+			detailsTextArea.setText(current.toDescription());
+			editField.clear();
 		}
 	}
 	
