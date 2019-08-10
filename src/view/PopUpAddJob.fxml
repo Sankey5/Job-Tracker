@@ -5,37 +5,68 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="27.0" prefWidth="600.0">
                <children>
                   <TextField fx:id="jobNumberText" promptText="Job Number" />
                   <DatePicker fx:id="deadlinePicker" promptText="Deadline" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox spacing="20.0">
                <children>
-                  <TextField fx:id="customerNameText" promptText="Customer Name" />
-                  <TextField fx:id="customerCompanyText" promptText="Company Name" />
-                  <TextField fx:id="customerPhoneNumberText" promptText="Customer Phone Number" />
-                  <TextField fx:id="customerEmailText" promptText="Customer Email" />
+                  <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" spacing="200.0">
+                     <children>
+                        <MenuButton fx:id="customerMenuButton" mnemonicParsing="false" onAction="#handleSelectCustomer" text="Select Customer">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#handleNewCustomer" text="New Customer" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="18.0" prefWidth="600.0">
+                     <children>
+                        <TextField fx:id="customerNameText" promptText="Customer Name" visible="false" />
+                        <TextField fx:id="customerCompanyText" promptText="Company Name" visible="false" />
+                        <TextField fx:id="customerPhoneNumberText" promptText="Customer Phone Number" visible="false" />
+                        <TextField fx:id="customerEmailText" promptText="Customer Email" visible="false" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            </VBox>
+            <VBox spacing="20.0">
                <children>
-                  <TextField fx:id="equipmentMakeText" promptText="Equipment Make" />
-                  <TextField fx:id="equipmentModelText" promptText="Equipment Model" />
-                  <TextField fx:id="equipmentSerialText" promptText="Equipment Serial" />
+                  <HBox alignment="CENTER" prefHeight="12.0" prefWidth="600.0" spacing="200.0">
+                     <children>
+                        <MenuButton fx:id="equipmentMenuButton" mnemonicParsing="false" onAction="#handleSelectEquipment" text="Select Equipment">
+                           <items>
+                              <CheckMenuItem mnemonicParsing="false" text="Unspecified Action" />
+                           </items>
+                        </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#handleNewEquipment" text="New Equipment" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="600.0">
+                     <children>
+                        <TextField fx:id="equipmentMakeText" promptText="Equipment Make" visible="false" />
+                        <TextField fx:id="equipmentModelText" promptText="Equipment Model" visible="false" />
+                        <TextField fx:id="equipmentSerialText" promptText="Equipment Serial" visible="false" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" text="Create Job" />
+            </VBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCreateJob" text="Create Job" />
          </children>
       </VBox>
    </center>
    <top>
       <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="599.0" text="Please fill out all fields to create a new job" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER" />
    </top>
+   <padding>
+      <Insets bottom="10.0" top="10.0" />
+   </padding>
 </BorderPane>

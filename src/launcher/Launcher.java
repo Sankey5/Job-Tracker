@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.testDatabase;
 import view.LoginController;
 import view.MainController;
 import view.ViewType;
@@ -44,6 +45,7 @@ public class Launcher extends Application{
 	}
 	
 	public static void main(String[] args) {
+		testDatabase.loadSampleData();
 		launch(args);
 	}
 

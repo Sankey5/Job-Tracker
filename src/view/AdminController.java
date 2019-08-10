@@ -103,6 +103,30 @@ package view;
 		}
 		
 		
+		public void handleAddJob() {
+			try {
+				Stage popupWindow = new Stage();
+				FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/PopUpAddJob.fxml"));
+				JobPopUpController controller = new JobPopUpController();
+				loader.setController(controller);
+				Parent root = loader.load();
+				popupWindow.setScene(new Scene(root));
+				popupWindow.show();
+				/*popupWindow.setOnHidden(
+					e-> clientListView.itemsProperty().set(
+					FXCollections.observableArrayList(database.getCustomers())));*/
+			}
+			catch (IOException e){
+				e.printStackTrace();
+			}
+		}
+		public void handleHomePressed(ActionEvent event) {
+			MainController.switchView(ViewType.Login);
+		}
+		public void handleAddTechnician() {
+			
+		}
+		
 		@Override
 		public void handle(ActionEvent event) {
 			// TODO Auto-generated method stub
@@ -118,4 +142,3 @@ package view;
 		}
 		
 	}
-

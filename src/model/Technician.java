@@ -31,7 +31,6 @@ public class Technician implements Serializable {
 	private ArrayList<Job> completedJobs;
 	// List of equipment a technician is proficient with
 	private ArrayList<Equipment> equipmentList;
-	private String id;
 	private String password;
 	private String phoneNumber;
 	private String stats;
@@ -39,10 +38,10 @@ public class Technician implements Serializable {
 	private String notice;
 	
 	public Technician() {
+		this.name = name;
 		this.myJobs = new ArrayList<Job>();
 		this.completedJobs = new ArrayList<Job>();
 		this.equipmentList = new ArrayList<Equipment>();
-		this.id = this.name;
 		this.password = "";
 		this.phoneNumber = "";
 		this.stats = "";
@@ -50,6 +49,10 @@ public class Technician implements Serializable {
 		this.notice = "";
 	}
 	
+	public Technician(String name) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * This function attempts to give a job to a technician.
 	 * If the technician does not have that job in their equipmentList,
@@ -118,13 +121,6 @@ public class Technician implements Serializable {
 		return strings;
 	}
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getPassword() {
 		return password;

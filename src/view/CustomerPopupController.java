@@ -37,8 +37,6 @@ public class CustomerPopupController implements Initializable, EventHandler<Acti
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 	}
 	
 	/**
@@ -59,47 +57,56 @@ public class CustomerPopupController implements Initializable, EventHandler<Acti
 
 	@Override
 	/**
-	 * Add customer button pressed.
+	 * Add customer button pressed. This function verify that all input fields contain valid data,
+	 * then create a new customer from those fields. If a field is not valid, a warning message
+	 * will be displayed to the user in the Label warningLabel.
 	 */
 	public void handle(ActionEvent event) {
 		clearWarning();
-		int phoneNumber = Integer.parseInt(phoneTextField.getText());
+		if(! validateFields()) {
+			return;
+		}
+		int phoneNumber = Integer.parseInt(phoneTextField.getText().replaceAll("-", ""));
 		String companyName = companyTextField.getText();
 		String name = nameTextField.getText();
 		String email = emailTextField.getText();
-//		if()
-
-//		Customer customer = new Customer(companyName, name, phoneNumber, email);
+		Customer customer = new Customer(companyName, name, phoneNumber, email);
 		Database.getInstance().addCustomer(new Customer(companyName, name, phoneNumber, email));
 		Stage thisStage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
 		thisStage.close();
-		
 	}
 
-	/*public boolean validateFields() {
+	/**
+	 * Validate each field. Set an appropriate error message if an incorrect
+	 * value is detected in the input field.
+	 * @return - True if all inputs are valid
+	 * <br> - False if an error was detected. (shows warning)
+	 */
+	public boolean validateFields() {
 		
-		if(! isValidPhone(phoneNumber)) {
-			showWarning("Invalid phone number: "+phoneNumber+"\nFormat: ##########");
+		if(! Database.validatePhoneNumer(phoneTextField.getText())) {
+			showWarning("Invalid phone number: "+phoneTextField.getText()+"\nFormat: ###-###-####");
 			phoneTextField.clear();
-			return;
+			return false;
 		}
-		if(! isValidCompanyName()) {
-			showWarning("Invalid company name: "+companyName+"\nFormat: *Give format here*");
+		if(! Database.validateWord(companyTextField.getText())) {
+			showWarning("Invalid company name: "+companyTextField.getText()+"\nPlease enter only alphanumeric characters");
 			companyTextField.clear();
-			return;
+			return false;
 		}
-		if(! isValidName()) {
-			showWarning("Invalid name:"+name+"Format: *give format here*");
+		if(! Database.validateWord(nameTextField.getText())) {
+			showWarning("Invalid name:"+nameTextField.getText()+"\nPlease enter only alphanumeric characters");
 			nameTextField.clear();
-			return;
+			return false;
 		}
-		if(! isValidEmail()) {
-			showWarning("Invalid email:"+email+"Format: *give valid email format here");
+		if(! Database.validEmail(emailTextField.getText())) {
+			showWarning("Invalid email:"+emailTextField.getText()+"\nFormat: BobSmith@hotmail.com");
 			emailTextField.clear();
-			return;
+			return false;
 		}
+		return true;
 		
-	}*/
+	}
 
 	
 }

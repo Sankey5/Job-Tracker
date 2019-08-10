@@ -38,7 +38,7 @@ public class Job implements Serializable{
 	 * @param equipment - tooling required for completing the job
 	 * @param deadlineEntry - deadline for the job
 	 */
-	public Job(Customer customer, Equipment equipment, LocalDate deadlineEntry, LocalDate dateFinished) {
+	public Job(Customer customer, Equipment equipment, LocalDate deadlineEntry) {
 		this.customer = customer;
 		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;

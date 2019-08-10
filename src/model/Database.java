@@ -34,15 +34,21 @@ import java.util.stream.Collectors;
 public class Database {
 	private static Database database;
 	private static String customerFileName, equipmentFileName, jobFileName, technicianFileName;
+	private static final String dataFileName = "src/data/database";
+	private Logger logger;
+	
+	// what is this for?
+	private Technician currentTech;
+	
 	private ArrayList<Technician> technicians;
 	private ArrayList<Customer> customers;
 	private ArrayList<Job> jobs;
 	private ArrayList<Equipment> equipment;
-	private Logger logger;
-	private Technician currentTech;
+
 	private static final Pattern nonAlphaNum = Pattern.compile("[^a-zA-Z0-9]");
 	private static final Pattern nonNumber = Pattern.compile("[^0-9]");
-	private static final Pattern emailPattern = Pattern.compile("[a-zA-Z0-9]*?@[a-zA-Z0-9]*?/.[a-zA-Z]{3}");
+	private static final Pattern emailPattern = Pattern.compile("[a-zA-Z0-9]+@[a-zA-Z0-9]*?\\.[a-zA-Z]{3}");
+	private static final Pattern phoneNumberPattern = Pattern.compile("[0-9]{3}-?[0-9]{3}-?[0-9]{4}");
 	
 	private Database() {
 		logger = Logger.getLogger(this.getClass().getName());
@@ -82,6 +88,16 @@ public class Database {
 		return (! m.find());
 	}
 	/**
+	 * Validate a phone number. Format: ###-###-####. (May contain hyphens).
+	 * @param input - input to validate
+	 * @return - True if phone number is valid
+	 * <br> - False if input does not meet requirements
+	 */
+	public static boolean validatePhoneNumer(String input) {
+		Matcher m = phoneNumberPattern.matcher(input);
+		return m.matches();
+	}
+	/**
 	 * Validate an email field. An email can contain any number of alphanumeric characters, 
 	 * '@', any number of alphanumeric characters, '.', and 3 letters (com, net, org, etc.).
 	 * @param input - input to validate
@@ -110,6 +126,25 @@ public class Database {
 		jobFileName = "src/data/jobs";
 		technicianFileName = "src/data/technicians";
 	}
+	
+	public void save() {
+		try {
+			FileOutputStream file = new FileOutputStream(dataFileName);
+			ObjectOutputStream objOut = new ObjectOutputStream(file);
+			objOut.writeObject(Database.getInstance());
+			System.out.print("new file\n");
+			file.close();
+			objOut.close();
+		} catch (FileNotFoundException e) {
+			logger.log(Level.SEVERE, "Data file could not be created default file name: "
+					+ dataFileName);
+			e.printStackTrace();
+		}
+		catch (IOException e) { 
+            e.printStackTrace(); 
+        } 
+	}
+	
 
 	public void loadTechnicians() {
 		try {
@@ -269,6 +304,9 @@ public class Database {
 	public void setTechnicians(ArrayList<Technician> technicians) {
 		this.technicians = technicians;
 	}
+	public void addTechnician(Technician technician) {
+		this.getTechnicians().add(technician);
+	}
 
 	public ArrayList<Customer> getCustomers() {
 		return customers;
@@ -300,6 +338,9 @@ public class Database {
 		return strings;
 	}
 
+	public void addEquipment(Equipment equipment) {
+		this.getEquipment().add(equipment);
+	}
 	public ArrayList<Equipment> getEquipment() {
 		return equipment;
 	}
