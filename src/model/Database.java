@@ -120,7 +120,6 @@ public class Database implements Serializable {
 			FileOutputStream file = new FileOutputStream(dataFileName);
 			ObjectOutputStream objOut = new ObjectOutputStream(file);
 			objOut.writeObject(Database.getInstance());
-			System.out.print("new file\n");
 			file.close();
 			objOut.close();
 		} catch (FileNotFoundException e) {
