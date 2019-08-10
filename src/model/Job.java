@@ -104,7 +104,7 @@ public class Job implements Serializable, Comparable{
 	}
 	
 	public String toDescription() {
-		String header = toString() + "\n";
+		String header = toString() + getId() + "\n";
 		String subject = this.customer.toString() + "\n";
 		String body = "Tool needed:" +  this.equipment.toString()
 					+ "Deadline: " + this.deadlineEntry 

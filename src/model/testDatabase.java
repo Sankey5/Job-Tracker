@@ -85,8 +85,11 @@ public class testDatabase {
 		bill.setEquipmentList(inventory);
 		database.addTechnician(bill);
 		Job bobJob = new Job(bobSmith, carJack, LocalDate.of(2019, 8, 20));
+		Job annitaJob = new Job(annitaDrinque, wrench,LocalDate.of(2019, 8, 9));
+		annitaJob.setPriority(Priority.Medium);
 		bobJob.setPriority(Priority.Low);
 		database.addJob(bobJob);
+		database.addJob(annitaJob);
 		
 		Equipment screwdriver = new Equipment("Phillips", "ScrewDriver", "5001");
 		Equipment hammer = new Equipment("Stanley", "Hammer", "5002");
@@ -103,8 +106,13 @@ public class testDatabase {
 		john.setEquipmentList(inventory2);
 		database.addTechnician(john);
 		Job janeJob = new Job(janeFergurson, hammer, LocalDate.of(2019, 8, 21));
+		Job timJob = new Job(timAnders, screwdriver, LocalDate.of(2019, 8, 10));
 		janeJob.setPriority(Priority.High);
+		timJob.setPriority(Priority.Medium);
 		database.addJob(janeJob);
+		database.addJob(timJob);
+		
+		
 		
 		
 		database.save();
