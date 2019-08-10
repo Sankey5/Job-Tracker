@@ -353,9 +353,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			Parent root = loader.load();
 			popupWindow.setScene(new Scene(root));
 			popupWindow.show();
-			/*popupWindow.setOnHidden(
-				e-> clientListView.itemsProperty().set(
-				FXCollections.observableArrayList(database.getCustomers())));*/
+			popupWindow.setOnHidden(
+				e-> availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs())));
 		}
 		catch (IOException e){
 			e.printStackTrace();
