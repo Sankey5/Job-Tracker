@@ -40,38 +40,27 @@ public class JobPopUpController implements Initializable {
 
     @FXML
     void handleNewCustomer(ActionEvent event) {
-    	customerEmailText.setVisible(true);
-    	customerPhoneNumberText.setVisible(true);
-    	customerCompanyText.setVisible(true);
-    	customerNameText.setVisible(true);
+    	customerEmailText.setDisable(false);
+    	customerEmailText.clear();
+    	customerPhoneNumberText.setDisable(false);
+    	customerPhoneNumberText.clear();
+    	customerCompanyText.setDisable(false);
+    	customerCompanyText.clear();
+    	customerNameText.setDisable(false);
+    	customerNameText.clear();
     	creatingCustomer = true;
     }
     @FXML
     void handleNewEquipment(ActionEvent event) {
     	System.out.print("asdfdf");
     	equipmentSerialText.setDisable(false);
+    	equipmentSerialText.clear();
     	equipmentMakeText.setDisable(false);
+    	equipmentMakeText.clear();
     	equipmentModelText.setDisable(false);
+    	equipmentModelText.clear();
     	creatingEquipment = true;
     }
-
-    private void handleSelectCustomer() {
-    	customerEmailText.setVisible(false);
-    	customerPhoneNumberText.setVisible(false);
-    	customerCompanyText.setVisible(false);
-    	customerNameText.setVisible(false);
-    	creatingCustomer = false;
-    	System.out.print("Easdf");
-    }
-    @FXML
-    void handleSelectEquipment(ActionEvent event) {
-    	System.out.print("Easdf");
-    	equipmentSerialText.setVisible(false);
-    	equipmentMakeText.setVisible(false);
-    	equipmentModelText.setVisible(false);
-    	creatingEquipment = false;
-    }
-
     @FXML
     void handleCreateJob(ActionEvent event) {
     	if(creatingCustomer) {
@@ -135,9 +124,13 @@ public class JobPopUpController implements Initializable {
 	}
     public void populateCustomerFields(Customer customer) {
     	customerCompanyText.setText(customer.getCustomerCompanyName());
+    	customerCompanyText.setDisable(true);
     	customerNameText.setText(customer.getCustomerName());
+    	customerNameText.setDisable(true);
     	customerEmailText.setText(customer.getCustomerEmail());
+    	customerEmailText.setDisable(true);
     	customerPhoneNumberText.setText(String.valueOf(customer.getCustomerPhoneNumber()));
+    	customerPhoneNumberText.setDisable(true);
     	creatingCustomer = false;
     }
 		
@@ -175,7 +168,7 @@ public class JobPopUpController implements Initializable {
 			item.setOnAction(e-> populateCustomerFields(customer));
 			customerMenuButton.getItems().add(item);
 		}
-		customerMenuButton.setOnAction(e -> handleSelectCustomer());
+		
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
 			CheckMenuItem item = new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel());
 			item.setOnAction(e-> populateEquipmentFields(equipment));

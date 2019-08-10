@@ -82,7 +82,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.setText(tech.getMyJobs().get(0).toDescription());
 		}
-		extrasTextArea.setText(tech.toExtras());
+//		extrasTextArea.setText(tech.toExtras());
 		
 	}
 	
