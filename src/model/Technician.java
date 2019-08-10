@@ -167,7 +167,7 @@ public class Technician implements Serializable {
 	}
 	
 	public String toExtras() {
-		return "Contact: " + getName() + " - " + getPhoneNumber() + "\nEquipment Registered: \n" 
+		return "Contact: " + getName() + " - #" + getPhoneNumber() + "\nEquipment Registered: \n" 
 				+ getEquipmentList().toString().replaceAll("\\[|, |\\]", "") + "Stats: "+ getStats() + "\nStatus: " + getStatus() + "\nNotices: \n" + getNotice();
 	}
 
