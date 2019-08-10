@@ -67,10 +67,16 @@ public class CustomerPopupController implements Initializable, EventHandler<Acti
 		String companyName = companyTextField.getText();
 		String name = nameTextField.getText();
 		String email = emailTextField.getText();
+//		if()
+
+//		Customer customer = new Customer(companyName, name, phoneNumber, email);
+		Database.getInstance().addCustomer(new Customer(companyName, name, phoneNumber, email));
+		Stage thisStage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
+		thisStage.close();
 		
-		/**
-		 * verify that all user provided field are valid
-		 */
+	}
+
+	/*public boolean validateFields() {
 		
 		if(! isValidPhone(phoneNumber)) {
 			showWarning("Invalid phone number: "+phoneNumber+"\nFormat: ##########");
@@ -93,39 +99,7 @@ public class CustomerPopupController implements Initializable, EventHandler<Acti
 			return;
 		}
 		
-//		Customer customer = new Customer(companyName, name, phoneNumber, email);
-		Database.getInstance().addCustomer(new Customer(companyName, name, phoneNumber, email));
-		Stage thisStage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
-		thisStage.close();
-		
-	}
+	}*/
 
-	private boolean isValidEmail() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	private boolean isValidName() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	/**
-	 * Verify that the company name provided is valid
-	 * @return
-	 */
-	private boolean isValidCompanyName() {
-		return true;
-	}
-
-	/**
-	 * Checks for a valid phone number
-	 * TODO: implement RegEx check
-	 * @param phoneNumber
-	 * @return
-	 */
-	public boolean isValidPhone(int phoneNumber) {
-		return true;
-	}
 	
 }
