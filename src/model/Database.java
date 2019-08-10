@@ -115,27 +115,6 @@ public class Database implements Serializable {
 		return m.matches();
 	}
 	
-	
-/*	public void loadDatabase() {
-		loadTechnicians();
-		loadCustomers();
-		loadEquipment();
-		loadJobs();
-	}
-	
-	
-	
-	/**
-	 * Simple default file names
-	 * TODO: Load these in from a settings file
-	 *
-	public void setDefaultFileNames() {
-		customerFileName = "src/data/customers";
-		equipmentFileName = "src/data/equipment";
-		jobFileName = "src/data/jobs";
-		technicianFileName = "src/data/technicians";
-	}*/
-	
 	public void save() {
 		try {
 			FileOutputStream file = new FileOutputStream(dataFileName);
@@ -222,9 +201,11 @@ public class Database implements Serializable {
 	
 	public void addJob(Job job) {
 		this.jobs.add(job);	
+		jobs.sort(new DateSorter());
 	}
 	public void setJobs(ArrayList<Job> jobs) {
 		this.jobs = jobs;
+		jobs.sort(new DateSorter());
 	}
 	
 	public List<String> getStringJobs() {

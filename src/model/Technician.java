@@ -109,6 +109,7 @@ public class Technician implements Serializable {
 	}
 	public void setMyJobs(ArrayList<Job> myJobs) {
 		this.myJobs = myJobs;
+		sortMyJobs();
 	}
 	
 	public List<String> getStringJobs() {

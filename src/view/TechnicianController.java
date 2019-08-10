@@ -3,6 +3,8 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -29,6 +31,7 @@ import javafx.stage.Stage;
 import launcher.Launcher;
 import model.Database;
 import model.Job;
+import model.Priority;
 import model.Technician;
 import javafx.scene.control.TextArea;
 
@@ -37,11 +40,13 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private Button newJob;
 	@FXML
-	private ListView<Job> availableJobsListView, currentJobsListView, completedJobsListView;
+	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
-	private TextArea detailsTextArea, extrasTextArea;
+	private TextArea detailsTextArea;
 	@FXML
 	private TextField editField;
+	
+	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList;
 	
 	private Technician tech;
 	private Database database;
@@ -52,13 +57,23 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		database = Database.getInstance();
 		
 		ObservableList<Job> availablejobs = FXCollections.observableArrayList(database.getJobs());
-		ObservableList<Job> currentjobs = FXCollections.observableArrayList(tech.getMyJobs());
-		
-		
-		
 		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
 		
-		currentJobsListView.setItems(currentjobs);
+		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
+		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
+		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
+		
+		Collections.sort(expressJobsUnsorted);
+		Collections.sort(regularJobsUnsorted);
+		Collections.sort(slowJobsUnsorted);
+		
+		expressObservableList = FXCollections.observableArrayList(expressJobsUnsorted);
+		regularObservableList = FXCollections.observableArrayList(regularJobsUnsorted);
+		slowObservableList = FXCollections.observableArrayList(slowJobsUnsorted);
+		
+		expressJobsListView.setItems(expressObservableList);
+		regularJobsListView.setItems(regularObservableList);
+		slowJobsListView.setItems(slowObservableList);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
 		
@@ -81,22 +96,55 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	}
 	
 	@FXML
-	public void handleMouseClick(MouseEvent click) {
+	public void handleExpressMouseClick(MouseEvent click) {
 			
-		if(currentJobsListView.getSelectionModel().isEmpty()){
+		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
-			Job current = currentJobsListView.getSelectionModel().getSelectedItem();
-		
-			for (int i = 0; i < tech.getMyJobs().size(); i++) {
-				if(current.equals(tech.getMyJobs().get(i))) {
-					detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
-				} 
-			}
 		}
+		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
+	
+		for (int i = 0; i < tech.getMyJobs().size(); i++) {
+			if(current.equals(tech.getMyJobs().get(i))) {
+				detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
+			} 
+		}
+		
 	}
+	
 	@FXML
-	public void handleMouseClick2(MouseEvent click) {
+	public void handleRegularMouseClick(MouseEvent click) {
+			
+		if(regularJobsListView.getSelectionModel().isEmpty()){
+			return;
+		}
+		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
+	
+		for (int i = 0; i < tech.getMyJobs().size(); i++) {
+			if(current.equals(tech.getMyJobs().get(i))) {
+				detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
+			} 
+		}
+		
+	}
+	
+	@FXML
+	public void handleSlowMouseClick(MouseEvent click) {
+			
+		if(slowJobsListView.getSelectionModel().isEmpty()){
+			return;
+		}
+		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
+	
+		for (int i = 0; i < tech.getMyJobs().size(); i++) {
+			if(current.equals(tech.getMyJobs().get(i))) {
+				detailsTextArea.setText(tech.getMyJobs().get(i).toDescription());
+			} 
+		}
+		
+	}
+	
+	@FXML
+	public void handleAvailableMouseClick(MouseEvent click) {
 		
 		if(availableJobsListView.getSelectionModel().isEmpty()){
 			return;
@@ -110,7 +158,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		}
 	}
 	@FXML
-	public void handleMouseClick3(MouseEvent click) {
+	public void handleCompletedMouseClick(MouseEvent click) {
 		
 		if(completedJobsListView.getSelectionModel().isEmpty()){
 			return;
@@ -123,6 +171,26 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			}	
 		}
 	}
+	
+	private void moveJob(Job jobToMove) {
+		switch(jobToMove.getPriority()) {
+		case High:
+			expressObservableList.add(jobToMove);
+			Collections.sort(expressObservableList);
+			expressJobsListView.setItems(expressObservableList);
+			break;
+		case Medium:
+			regularObservableList.add(jobToMove);
+			Collections.sort(regularObservableList);
+			regularJobsListView.setItems(regularObservableList);
+			break;
+		case Low:
+			slowObservableList.add(jobToMove);
+			Collections.sort(slowObservableList);
+			slowJobsListView.setItems(slowObservableList);
+			break;
+		}
+	}
 		
 	public void availableMenuAdd(ActionEvent event) {
 		
@@ -131,66 +199,148 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 		Job available = availableJobsListView.getSelectionModel().getSelectedItem();
 		if(tech.giveJob(available)) {
-			database.getInstance().getJobs().remove(available);
-			currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
-			availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
+			database.getJobs().remove(available);
+			tech.getMyJobs().add(available);
+			moveJob(available);
+			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
-		extrasTextArea.setText(tech.toExtras());
 		}
 	}
 	
-	public void currentMenuComplete(ActionEvent event) {
-		if(currentJobsListView.getSelectionModel().isEmpty()){
+	public void expressMenuComplete(ActionEvent event) {
+		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
-		Job current = currentJobsListView.getSelectionModel().getSelectedItem();
+		} 
+		
+		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
-		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		extrasTextArea.setText(tech.toExtras());
-		}
+		
 	}
 	
-	public void currentMenuRemove(ActionEvent event) {
-		if(currentJobsListView.getSelectionModel().isEmpty()){
+	public void expressMenuRemove(ActionEvent event) {
+		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
-		Job current = currentJobsListView.getSelectionModel().getSelectedItem();
-		database.getInstance().addJob(current);
+		} 
+		
+		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
+		database.addJob(current);
 		tech.removeJob(current);
-		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
-		availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
-		extrasTextArea.setText(tech.toExtras());
-		}
+		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
+		
 	}
 	
-	public void currentMenuDetails(ActionEvent event) {
-		if(currentJobsListView.getSelectionModel().isEmpty()){
+	public void expressMenuDetails(ActionEvent event) {
+		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
-			Job current = currentJobsListView.getSelectionModel().getSelectedItem();
-			if(editField.getText().isEmpty()) {
-				return;
-			}
-			current.setMemo(editField.getText());
-			detailsTextArea.setText(current.toDescription());
-			editField.clear();
 		}
+		
+		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
+		if(editField.getText().isEmpty()) {
+			return;
+		}
+		current.setMemo(editField.getText());
+		detailsTextArea.setText(current.toDescription());
+		editField.clear();
+		
+	}
+	
+	public void regularMenuComplete(ActionEvent event) {
+		if(regularJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} 
+		
+		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
+		tech.completedJob(current);
+		regularJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
+		
+	}
+	
+	public void regularMenuRemove(ActionEvent event) {
+		if(regularJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} 
+		
+		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
+		database.addJob(current);
+		tech.removeJob(current);
+		regularJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
+		
+	}
+	
+	public void regularMenuDetails(ActionEvent event) {
+		if(regularJobsListView.getSelectionModel().isEmpty()){
+			return;
+		}
+		
+		Job current = regularJobsListView.getSelectionModel().getSelectedItem();
+		if(editField.getText().isEmpty()) {
+			return;
+		}
+		current.setMemo(editField.getText());
+		detailsTextArea.setText(current.toDescription());
+		editField.clear();
+		
+	}
+	
+	public void slowMenuComplete(ActionEvent event) {
+		if(slowJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} 
+		
+		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
+		tech.completedJob(current);
+		slowJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
+		
+	}
+	
+	public void slowMenuRemove(ActionEvent event) {
+		if(slowJobsListView.getSelectionModel().isEmpty()){
+			return;
+		} 
+		
+		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
+		database.addJob(current);
+		tech.removeJob(current);
+		slowJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
+		
+	}
+	
+	public void slowMenuDetails(ActionEvent event) {
+		if(slowJobsListView.getSelectionModel().isEmpty()){
+			return;
+		}
+		
+		Job current = slowJobsListView.getSelectionModel().getSelectedItem();
+		if(editField.getText().isEmpty()) {
+			return;
+		}
+		current.setMemo(editField.getText());
+		detailsTextArea.setText(current.toDescription());
+		editField.clear();
+		
 	}
 	
 	public void completedMenuReturn(ActionEvent event) {
 		if(completedJobsListView.getSelectionModel().isEmpty()){
 			return;
-		} else {
+		} 
+		
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
 		tech.giveJob(current);
 		tech.getCompletedJobs().remove(current);
-		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		database.getJobs().add(current);
+		moveJob(current);
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
-		extrasTextArea.setText(tech.toExtras());
-		}
+		
 	}
 	
 	@FXML
@@ -203,9 +353,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			Parent root = loader.load();
 			popupWindow.setScene(new Scene(root));
 			popupWindow.show();
-			/*popupWindow.setOnHidden(
-				e-> clientListView.itemsProperty().set(
-				FXCollections.observableArrayList(database.getCustomers())));*/
+			popupWindow.setOnHidden(
+				e-> availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs())));
 		}
 		catch (IOException e){
 			e.printStackTrace();
