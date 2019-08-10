@@ -15,6 +15,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,7 +99,12 @@ public class Technician implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void sortMyJobs() {
+		myJobs.sort(new DateSorter());
+	}
 	public ArrayList<Job> getMyJobs() {
+		sortMyJobs();
 		return myJobs;
 	}
 	public void setMyJobs(ArrayList<Job> myJobs) {
@@ -172,11 +178,16 @@ public class Technician implements Serializable {
 	}
 
 	public ArrayList<Job> getCompletedJobs() {
+		sortCompletedJobs();
 		return completedJobs;
 	}
 
 	public void setCompletedJobs(ArrayList<Job> completedJobs) {
 		this.completedJobs = completedJobs;
+	}
+	
+	public void sortCompletedJobs() {
+		completedJobs.sort(new DateSorter());
 	}
 	
 	public void removeJob(Job job) {

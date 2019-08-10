@@ -274,6 +274,7 @@ public class Database {
 	}
 
 	public ArrayList<Job> getJobs() {
+		jobs.sort(new DateSorter());
 		return jobs;
 	}
 	
