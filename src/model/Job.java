@@ -44,7 +44,7 @@ public class Job implements Serializable, Comparable{
 		this.customer = customer;
 		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;
-		this.id = "";
+		this.setId("");
 		this.techName = "";
 		this.details = "No additional details.";
 		priority = Priority.Medium;
@@ -100,7 +100,7 @@ public class Job implements Serializable, Comparable{
 	}
 	
 	public String toString() {
-		return this.deadlineEntry + ": " +this.customer.getCustomerName() + " - " ;
+		return this.deadlineEntry + ": " +this.customer.getCustomerName() + " - " + this.getEquipment().getEquipmentModel();
 	}
 	
 	public String toDescription() {
@@ -125,6 +125,14 @@ public class Job implements Serializable, Comparable{
 		Job temp = (Job) arg0;
 		
 		return this.getDeadlineEntry().compareTo(temp.getDeadlineEntry());
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
