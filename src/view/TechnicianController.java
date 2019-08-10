@@ -200,13 +200,14 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	}
 	
 	public void expressMenuComplete(ActionEvent event) {
+		
 		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
 		} 
 		
 		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
-		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		extrasTextArea.setText(tech.toExtras());
 	}
