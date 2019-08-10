@@ -110,6 +110,7 @@ public class MainController implements Initializable {
 				case TechSelect:
 					loader = new FXMLLoader(Launcher.class.getResource("/view/TechSelectView.fxml"));
 					loader.setController(new TechSelectController());
+					Database.getInstance().save();
 					break;
 			}
 			Parent view = loader.load();
