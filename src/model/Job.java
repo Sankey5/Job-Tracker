@@ -30,7 +30,7 @@ public class Job implements Serializable{
 	private Customer customer;
 	private Equipment equipment;
 	private String details;
-	
+	private String techName;
 	
 	/**@author Kenny
 	 * 
@@ -45,6 +45,12 @@ public class Job implements Serializable{
 		this.details = "No additional details.";
 	}
 
+	public void setTechName(String name) {
+		this.techName = name;
+	}
+	public String getTechName() {
+		return this.techName;
+	}
 	public LocalDate getDeadlineEntry() {
 		return deadlineEntry;
 	}

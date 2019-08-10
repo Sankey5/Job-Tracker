@@ -27,6 +27,8 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Database {
@@ -38,7 +40,8 @@ public class Database {
 	private ArrayList<Equipment> equipment;
 	private Logger logger;
 	private Technician currentTech;
-	
+	private static final Pattern nonAlphaNum = Pattern.compile("[^a-zA-Z0-9]");
+	private static final Pattern emailPattern = Pattern.compile("[a-zA-Z0-9]*?@[a-zA-Z0-9]*?/.[a-zA-Z]{3}");
 	
 	private Database() {
 		logger = Logger.getLogger(this.getClass().getName());
@@ -62,7 +65,28 @@ public class Database {
 		return database;
 	}
 	
+	/**
+	 * Validate words. Words should only have letters and/or numbers
+	 * @param input - input to validate
+	 * @return - True if the input is valid.
+	 * <br>False if the input contains an illegal character
+	 */
+	public static boolean validWord(String input) {
+		Matcher m = nonAlphaNum.matcher(input);
+		return m.find();
+	}
 	
+	/**
+	 * Validate an email field. An email can contain any number of alphanumeric characters, 
+	 * '@', any number of alphanumeric characters, '.', and 3 letters (com, net, org, etc.).
+	 * @param input - input to validate
+	 * @return - True if email is valid
+	 * <br> - False if the email does not meet the requirements.
+	 */
+	public static boolean validEmail(String input) {
+		Matcher m = emailPattern.matcher(input);
+		return m.matches();
+	}
 	
 	// TODO: build this out
 	public void addMemo(String memo) {

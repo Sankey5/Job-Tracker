@@ -23,7 +23,6 @@ public class Customer implements Serializable {
 	private String customerEmail;
 	
 	public Customer(String customerCompanyName, String customerName, int customerPhoneNumber, String customerEmail) {
-		super();
 		this.customerCompanyName = customerCompanyName;
 		this.customerName = customerName;
 		this.customerPhoneNumber = customerPhoneNumber;

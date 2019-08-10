@@ -61,6 +61,7 @@ public class Technician implements Serializable {
 	public boolean giveJob(Job job) {
 		if(this.canUseEquipment(job.getEquipment())) {
 			this.addJob(job);
+			job.setTechName(this.getName());
 			return true;
 		}
 		return false;
