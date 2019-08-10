@@ -26,6 +26,7 @@ public class Job implements Serializable, Comparable{
 	 */
 	private static final long serialVersionUID = 1L;
 	// determines position in priority queue
+	private String id;
 	private LocalDate deadlineEntry;
 	private LocalDate dateFinished;
 	private Customer customer;
@@ -43,6 +44,7 @@ public class Job implements Serializable, Comparable{
 		this.customer = customer;
 		this.equipment = equipment;
 		this.deadlineEntry = deadlineEntry;
+		this.id = "";
 		this.techName = "";
 		this.details = "No additional details.";
 		priority = Priority.Medium;
@@ -98,7 +100,7 @@ public class Job implements Serializable, Comparable{
 	}
 	
 	public String toString() {
-		return this.deadlineEntry + ": " +this.customer.getCustomerName() + " - " +  this.equipment.getEquipmentMake();
+		return this.deadlineEntry + ": " +this.customer.getCustomerName() + " - " ;
 	}
 	
 	public String toDescription() {

@@ -37,7 +37,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="12.0" prefWidth="600.0" spacing="200.0">
                      <children>
-                        <MenuButton fx:id="equipmentMenuButton" mnemonicParsing="false" onAction="#handleSelectEquipment" text="Select Equipment" />
+                        <MenuButton fx:id="equipmentMenuButton" mnemonicParsing="false" text="Select Equipment" />
                         <Button mnemonicParsing="false" onAction="#handleNewEquipment" text="New Equipment" />
                      </children>
                   </HBox>
