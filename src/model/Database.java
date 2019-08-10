@@ -13,6 +13,7 @@
  *******************************************************************************/
 package model;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -139,7 +140,10 @@ public class Database implements Serializable {
 			database = (Database) objIn.readObject();
 			file.close();
 			objIn.close();
-		} catch (FileNotFoundException e) {
+		} catch(EOFException e) {
+			e.printStackTrace();
+		} 
+		catch (FileNotFoundException e) {
 			logger.log(Level.SEVERE, "Data file could not be created default file name: "
 					+ dataFileName);
 			e.printStackTrace();
@@ -150,6 +154,7 @@ public class Database implements Serializable {
 		catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public ArrayList<Job> getAssignedJobs(){
