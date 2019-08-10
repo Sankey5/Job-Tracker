@@ -24,7 +24,7 @@
    <center>
       <VBox>
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="847.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="847.0" spacing="200.0">
                <children>
                   <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backAction" prefHeight="31.0" prefWidth="149.0" text="Back" textAlignment="CENTER" />
                   <Label alignment="CENTER" prefHeight="47.0" prefWidth="317.0" text="Techinican Main Page " textAlignment="CENTER" textFill="#e13535">
@@ -42,69 +42,122 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="351.0" prefWidth="735.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="300.0" prefWidth="1040.0">
                <children>
-                  <VBox alignment="TOP_RIGHT" prefHeight="351.0" prefWidth="354.0">
+                  <HBox alignment="CENTER" prefHeight="295.0" prefWidth="1040.0">
                      <children>
-                        <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="325.0" text="Current Jobs" />
-                        <ListView fx:id="currentJobsListView" editable="true" onMouseClicked="#handleMouseClick" prefHeight="149.0" prefWidth="297.0">
-                           <contextMenu>
-                              <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
-                                    <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
-                                    <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu></ListView>
-                        <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="334.0" text="Completed Jobs" />
-                        <ListView fx:id="completedJobsListView" onMouseClicked="#handleMouseClick3" prefHeight="168.0" prefWidth="263.0">
-                           <contextMenu>
-                              <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#completedMenuReturn" text="Return to Current Jobs" />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu></ListView>
+                        <VBox alignment="TOP_CENTER" prefHeight="351.0" prefWidth="354.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Current Jobs" />
+                              <ListView fx:id="currentJobsListView" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                                 <contextMenu>
+                                    <ContextMenu>
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </ListView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Current Jobs" />
+                              <ListView fx:id="currentJobsListView1" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                                 <contextMenu>
+                                    <ContextMenu>
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                       </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </ListView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="364.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Current Jobs" />
+                              <ListView fx:id="currentJobsListView11" editable="true" onMouseClicked="#handleMouseClick" prefHeight="350.0" prefWidth="347.0">
+                                 <contextMenu>
+                                    <ContextMenu>
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
+                                          <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
+                                       </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </ListView>
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
-                  <VBox prefHeight="351.0" prefWidth="634.0">
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="183.0" prefWidth="1040.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="140.0" prefWidth="908.0">
                      <children>
-                        <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="583.0" text="Details:" />
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="583.0" text="Details:" />
                         <TextArea fx:id="detailsTextArea" prefHeight="296.0" prefWidth="543.0" />
                         <TextField fx:id="editField" prefHeight="33.0" prefWidth="543.0" promptText="Details: " />
                      </children>
                   </VBox>
-                  <VBox prefHeight="351.0" prefWidth="326.0">
-                     <children>
-                        <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="310.0" text="Extras:" />
-                        <TextArea fx:id="extrasTextArea" prefHeight="330.0" prefWidth="150.0" />
-                     </children>
-                  </VBox>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="252.0" prefWidth="1040.0">
+            <VBox alignment="CENTER" prefHeight="299.0" prefWidth="1040.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="160.0" text="Available Jobs">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
                   <HBox alignment="CENTER" prefHeight="218.0" prefWidth="1040.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER">
+                        <HBox>
                            <children>
-                              <Button fx:id="newJob" mnemonicParsing="false" onAction="#handleNewJob" text="New Job" />
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="newJob" mnemonicParsing="false" onAction="#handleNewJob" text="New Job" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="160.0" text="Available Jobs">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick2" prefHeight="218.0" prefWidth="389.0">
+                                       <contextMenu>
+                                          <ContextMenu>
+                                            <items>
+                                              <MenuItem mnemonicParsing="false" onAction="#availableMenuAdd" text="Add to Current Jobs" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </ListView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="334.0" text="Completed Jobs">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ListView fx:id="completedJobsListView" onMouseClicked="#handleMouseClick3" prefHeight="218.0" prefWidth="334.0">
+                                 <contextMenu>
+                                    <ContextMenu>
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#completedMenuReturn" text="Return to Current Jobs" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </ListView>
                            </children>
                         </VBox>
-                        <ListView fx:id="availableJobsListView" onMouseClicked="#handleMouseClick2" prefHeight="218.0" prefWidth="389.0">
-                           <contextMenu>
-                              <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#availableMenuAdd" text="Add to Current Jobs" />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu></ListView>
                      </children>
                   </HBox>
                </children>
