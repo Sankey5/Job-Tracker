@@ -35,6 +35,8 @@ public class testDatabase {
 		database.addCustomer(annitaDrinque);
 		Technician bill = new Technician("Bill");
 		bill.setEquipmentList(inventory);
+		bill.setPhoneNumber("210456789");
+		bill.setStatus("Sample");
 		database.addTechnician(bill);
 		Job bobJob = new Job(bobSmith, carJack, LocalDate.of(2019, 8, 20));
 		Job annitaJob = new Job(annitaDrinque, wrench,LocalDate.of(2019, 8, 9));
@@ -56,6 +58,8 @@ public class testDatabase {
 		database.addCustomer(janeFergurson);
 		Technician john = new Technician("John");
 		john.setEquipmentList(inventory2);
+		john.setPhoneNumber("2145784561");
+		john.setStatus("Sample");
 		database.addTechnician(john);
 		Job janeJob = new Job(janeFergurson, hammer, LocalDate.of(2019, 8, 21));
 		Job timJob = new Job(timAnders, screwdriver, LocalDate.of(2019, 8, 10));
@@ -80,6 +84,23 @@ public class testDatabase {
 		database.addJob(matthewJob);
 		bill.addEquipment(wiresplitter);
 		john.addEquipment(solder);
+		
+		Equipment solder2 = new Equipment("Watts", "Solder", "S-07");
+		Equipment wiresplitter2 = new Equipment("Jameson", "wiresplitter", "6305");
+		database.addEquipment(solder2);
+		database.addEquipment(wiresplitter2);
+		Customer carlHen = new Customer("AutoZone", "Carl Henries", 2101578321, "Carl@Autozone.com");
+		Customer hannahBurns = new Customer("Resident", "Hannah Burns", 2108357123, "Hannah@Gmail.com");
+		database.addCustomer(carlHen);
+		database.addCustomer(hannahBurns);
+		Job carlJob = new Job(carlHen, solder2, LocalDate.of(2019, 8, 25));
+		Job hannahJob = new Job(hannahBurns, wiresplitter2, LocalDate.of(2019, 8, 13));
+		carlJob.setPriority(Priority.Low);
+		hannahJob.setPriority(Priority.Medium);
+		database.addJob(carlJob);
+		database.addJob(hannahJob);
+		
+		
 		database.save();
 	}
 }

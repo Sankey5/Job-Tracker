@@ -29,6 +29,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import launcher.Launcher;
 import model.Database;
+import model.Equipment;
 import model.Job;
 import model.Priority;
 import model.Technician;
@@ -37,14 +38,14 @@ import javafx.scene.control.TextArea;
 public class TechnicianController implements EventHandler<ActionEvent>, Initializable {
 
 	@FXML
-	private Button newJob;
+	private Button newJob, filterButton;;
 	@FXML
 	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
 	private TextArea detailsTextArea, extrasTextArea;
 	@FXML
 	private TextField editField;
-	
+	private boolean fired;
 	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList, availablejobs, completedjobs;
 	
 	private Technician tech;
@@ -53,7 +54,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		updateJobQueues();
-		
+		fired = false;
 		if(tech.getMyJobs().size() == 0) {
 	
 		} else {
@@ -179,6 +180,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		slowJobsListView.setItems(slowObservableList);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
+		
+		filterButton.setText("All Jobs");
+		fired = false;
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
@@ -352,6 +356,34 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			e.printStackTrace();
 		}
     }
+	
+	public void filterAction(ActionEvent event) {
+		ArrayList<Job> matched = new ArrayList<Job>();
+		if(fired == false) {
+			availableJobsListView.setItems(null);
+			filterButton.setText("Acceptable Jobs");
+			ArrayList<Job> jobList = database.getJobs();
+			for(int i = 0; i < jobList.size(); i++) {
+				Equipment equipment = jobList.get(i).getEquipment();
+				for(int k = 0; k < tech.getEquipmentList().size(); k++) {
+					if(equipment.compareTo(tech.getEquipmentList().get(k))) {
+						matched.add(jobList.get(i));
+					}
+				}
+				
+			}
+			
+			ObservableList<Job> matchList= FXCollections.observableArrayList(matched);
+			availableJobsListView.setItems(matchList);
+			fired = true;
+			
+		} else if(fired == true) {//if (availableJobsListView.getItems().size() < database.getJobs().size()) {
+			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
+			filterButton.setText("All Jobs");
+			fired = false;
+		}
+		
+	}
 	
 	@Override
 	public void handle(ActionEvent event) {
