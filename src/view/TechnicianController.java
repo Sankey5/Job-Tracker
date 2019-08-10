@@ -116,7 +116,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			database.getInstance().getJobs().remove(available);
 			currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 			availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
-			
+		} else {
+			detailsTextArea.appendText("\n\n Unable to add job!!");
 		}
 	}
 	
