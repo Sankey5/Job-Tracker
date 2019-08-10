@@ -20,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Database {
+public class Database implements Serializable {
 	private static Database database;
 	private static String customerFileName, equipmentFileName, jobFileName, technicianFileName;
 	private static final String dataFileName = "src/data/database";

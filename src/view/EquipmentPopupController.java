@@ -76,7 +76,7 @@ public class EquipmentPopupController implements Initializable, EventHandler<Act
 			showWarning(warnModel);
 			return false;
 		}
-		if(! Database.validateNumber(makeTextField.getText())) {
+		if(! Database.validateNumber(serialTextField.getText())) {
 			showWarning(warnSerial);
 			return false;
 		}

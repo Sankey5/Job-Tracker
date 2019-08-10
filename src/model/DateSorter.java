@@ -9,6 +9,4 @@ public class DateSorter implements Comparator<Job> {
 		// TODO Auto-generated method stub
 		return j2.getDeadlineEntry().compareTo(j1.getDeadlineEntry());
 	}
-	
-
 }

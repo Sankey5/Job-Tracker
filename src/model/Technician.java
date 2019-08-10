@@ -37,7 +37,8 @@ public class Technician implements Serializable {
 	private String status;
 	private String notice;
 	
-	public Technician() {
+
+	public Technician(String name) {
 		this.name = name;
 		this.myJobs = new ArrayList<Job>();
 		this.completedJobs = new ArrayList<Job>();
@@ -48,11 +49,6 @@ public class Technician implements Serializable {
 		this.status = "";
 		this.notice = "";
 	}
-	
-	public Technician(String name) {
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * This function attempts to give a job to a technician.
 	 * If the technician does not have that job in their equipmentList,

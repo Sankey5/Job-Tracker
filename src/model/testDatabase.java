@@ -41,5 +41,4 @@ public class testDatabase {
 		
 		database.save();
 	}
-
 }
