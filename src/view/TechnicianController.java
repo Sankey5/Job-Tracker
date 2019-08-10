@@ -42,7 +42,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
-	private TextArea detailsTextArea;
+	private TextArea detailsTextArea, extrasTextArea;
 	@FXML
 	private TextField editField;
 	
