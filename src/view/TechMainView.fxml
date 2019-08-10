@@ -48,7 +48,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="351.0" prefWidth="354.0">
                            <children>
-                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Express Jobs" />
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="High Priority" />
                               <ListView fx:id="expressJobsListView" editable="true" onMouseClicked="#handleExpressMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
@@ -64,7 +64,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
                            <children>
-                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Regular Jobs" />
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Normal Priority" />
                               <ListView fx:id="regularJobsListView" editable="true" onMouseClicked="#handleRegularMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
@@ -80,7 +80,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="364.0" layoutY="10.0" prefHeight="351.0" prefWidth="354.0">
                            <children>
-                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Slow Jobs" />
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="325.0" text="Low Priority" />
                               <ListView fx:id="slowJobsListView" editable="true" onMouseClicked="#handleSlowMouseClick" prefHeight="350.0" prefWidth="347.0" stylesheets="@../stylesheets/techSelectionCSS.css">
                                  <contextMenu>
                                     <ContextMenu>
