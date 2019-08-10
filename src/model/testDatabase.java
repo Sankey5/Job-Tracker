@@ -44,7 +44,7 @@ public class testDatabase {
 		database.addJob(annitaJob);
 		
 		Equipment screwdriver = new Equipment("Phillips", "ScrewDriver", "5001");
-		Equipment hammer = new Equipment("Stanley", "Hammer", "5002");
+		Equipment hammer = new Equipment("Haxx", "Hammer", "5002");
 		ArrayList<Equipment> inventory2 = new ArrayList<Equipment>();
 		inventory2.add(screwdriver);
 		inventory2.add(hammer);
@@ -65,7 +65,7 @@ public class testDatabase {
 		database.addJob(timJob);
 		
 		Equipment solder = new Equipment("Watts", "Solder", "S-01");
-		Equipment wiresplitter = new Equipment("Stanley", "wiresplitter", "5002");
+		Equipment wiresplitter = new Equipment("Jameson", "wiresplitter", "5702");
 		database.addEquipment(solder);
 		database.addEquipment(wiresplitter);
 		Customer sarahAnders = new Customer("Walmart", "Sarah Anders", 2101594321, "Sarah@Walmart.com");
@@ -79,7 +79,7 @@ public class testDatabase {
 		database.addJob(sarahJob);
 		database.addJob(matthewJob);
 		bill.addEquipment(wiresplitter);
-		
+		john.addEquipment(solder);
 		database.save();
 	}
 }
