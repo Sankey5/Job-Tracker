@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -10,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="807.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="807.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Admin Main " textFill="#e13535">
+            <Label text="Welcome Admin" textFill="#e13535">
                <font>
                   <Font size="32.0" />
                </font>
@@ -35,12 +41,12 @@
                   <VBox alignment="TOP_CENTER" prefHeight="631.0" prefWidth="466.0" spacing="10.0">
                      <children>
                         <Label alignment="TOP_CENTER" prefHeight="32.0" prefWidth="200.0" text="Inventory" />
-                        <ListView fx:id="inventoryListView" editable="true" prefHeight="315.0" prefWidth="466.0" />
+                        <ListView fx:id="inventoryListView" editable="true" prefHeight="330.0" prefWidth="466.0" />
                         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="200.0" text="Clients" />
                         <ListView fx:id="clientListView" editable="true" prefHeight="330.0" prefWidth="200.0" />
                      </children>
                      <HBox.margin>
-                        <Insets top="30.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                </children>
@@ -83,4 +89,7 @@
          </BorderPane.margin>
       </Group>
    </top>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
 </BorderPane>

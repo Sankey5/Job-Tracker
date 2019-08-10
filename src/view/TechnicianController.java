@@ -326,7 +326,10 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} 
 		
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
-		tech.giveJob(current);
+		if(! tech.giveJob(current)) {
+			detailsTextArea.appendText(tech.getName()+" is not trained to use "+ current.getEquipment());
+			return;
+		}
 		tech.getCompletedJobs().remove(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
