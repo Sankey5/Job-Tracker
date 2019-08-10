@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -46,6 +47,7 @@
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#currentMenuComplete" text="Complete Job" />
                                     <MenuItem mnemonicParsing="false" onAction="#currentMenuRemove" text="Remove Job" />
+                                    <MenuItem mnemonicParsing="false" onAction="#currentMenuDetails" text="Change Details" />
                                 </items>
                               </ContextMenu>
                            </contextMenu></ListView>
@@ -63,7 +65,8 @@
                   <VBox prefHeight="351.0" prefWidth="634.0">
                      <children>
                         <Label alignment="TOP_CENTER" prefHeight="21.0" prefWidth="583.0" text="Details:" />
-                        <TextArea fx:id="detailsTextArea" prefHeight="330.0" prefWidth="206.0" />
+                        <TextArea fx:id="detailsTextArea" prefHeight="296.0" prefWidth="543.0" />
+                        <TextField fx:id="editField" prefHeight="33.0" prefWidth="543.0" promptText="Details: " />
                      </children>
                   </VBox>
                   <VBox prefHeight="351.0" prefWidth="326.0">
