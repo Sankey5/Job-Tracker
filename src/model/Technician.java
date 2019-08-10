@@ -136,7 +136,10 @@ public class Technician implements Serializable {
 	}
 
 	public String getStats() {
-		return stats;
+		int complete = getCompletedJobs().size();
+		int current = getMyJobs().size();
+		return stats = complete + " out of " + (complete + current);
+		
 	}
 
 	public void setStats(String stats) {
@@ -144,7 +147,7 @@ public class Technician implements Serializable {
 	}
 
 	public String getStatus() {
-		return status;
+	return this.status;
 	}
 
 	public void setStatus(String status) {

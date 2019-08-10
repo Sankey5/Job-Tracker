@@ -124,6 +124,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.appendText("\n\n\nUnable to add job!!");
 		}
+		extrasTextArea.setText(tech.toExtras());
 		}
 	}
 	
@@ -135,6 +136,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.completedJob(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
+		extrasTextArea.setText(tech.toExtras());
 		}
 	}
 	
@@ -147,6 +149,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.removeJob(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		availableJobsListView.setItems(FXCollections.observableArrayList(Database.getInstance().getJobs()));
+		extrasTextArea.setText(tech.toExtras());
 		}
 	}
 	
@@ -159,6 +162,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		tech.getCompletedJobs().remove(current);
 		currentJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
+		extrasTextArea.setText(tech.toExtras());
 		}
 	}
 	
