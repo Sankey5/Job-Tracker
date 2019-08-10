@@ -19,16 +19,16 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" spacing="200.0">
                      <children>
-                        <MenuButton fx:id="customerMenuButton" mnemonicParsing="false" onAction="#handleSelectCustomer" text="Select Customer" />
+                        <MenuButton fx:id="customerMenuButton" mnemonicParsing="false" text="Select Customer" />
                         <Button mnemonicParsing="false" onAction="#handleNewCustomer" text="New Customer" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="18.0" prefWidth="600.0">
                      <children>
-                        <TextField fx:id="customerNameText" promptText="Customer Name" visible="false" />
-                        <TextField fx:id="customerCompanyText" promptText="Company Name" visible="false" />
-                        <TextField fx:id="customerPhoneNumberText" promptText="Customer Phone Number" visible="false" />
-                        <TextField fx:id="customerEmailText" promptText="Customer Email" visible="false" />
+                        <TextField fx:id="customerNameText" promptText="Customer Name" />
+                        <TextField fx:id="customerCompanyText" promptText="Company Name" />
+                        <TextField fx:id="customerPhoneNumberText" promptText="Customer Phone Number" />
+                        <TextField fx:id="customerEmailText" promptText="Customer Email" />
                      </children>
                   </HBox>
                </children>
@@ -43,9 +43,9 @@
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="600.0">
                      <children>
-                        <TextField fx:id="equipmentMakeText" promptText="Equipment Make" visible="false" />
-                        <TextField fx:id="equipmentModelText" promptText="Equipment Model" visible="false" />
-                        <TextField fx:id="equipmentSerialText" promptText="Equipment Serial" visible="false" />
+                        <TextField fx:id="equipmentMakeText" promptText="Equipment Make" />
+                        <TextField fx:id="equipmentModelText" promptText="Equipment Model" />
+                        <TextField fx:id="equipmentSerialText" promptText="Equipment Serial" />
                      </children>
                   </HBox>
                </children>

@@ -44,7 +44,6 @@ public class TechnicianPopupController implements EventHandler<ActionEvent>, Ini
 			CheckMenuItem item = new CheckMenuItem(equipment.getEquipmentMake()+"-"+equipment.getEquipmentModel());
 			equipmentMenuButton.getItems().add(item);
 			itemMap.put(item, equipment);
-			
 		}
 	}
 

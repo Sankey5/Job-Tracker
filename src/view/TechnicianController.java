@@ -42,7 +42,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
-	private TextArea detailsTextArea;
+	private TextArea detailsTextArea, extrasTextArea;
 	@FXML
 	private TextField editField;
 	
@@ -87,6 +87,7 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} else {
 			detailsTextArea.setText(tech.getMyJobs().get(0).toDescription());
 		}
+		extrasTextArea.setText(tech.toExtras());
 		
 	}
 	

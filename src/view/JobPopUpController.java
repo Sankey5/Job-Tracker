@@ -48,14 +48,14 @@ public class JobPopUpController implements Initializable {
     }
     @FXML
     void handleNewEquipment(ActionEvent event) {
-    	equipmentSerialText.setVisible(true);
-    	equipmentMakeText.setVisible(true);
-    	equipmentModelText.setVisible(true);
+    	System.out.print("asdfdf");
+    	equipmentSerialText.setDisable(false);
+    	equipmentMakeText.setDisable(false);
+    	equipmentModelText.setDisable(false);
     	creatingEquipment = true;
     }
 
-    @FXML
-    void handleSelectCustomer(ActionEvent event) {
+    private void handleSelectCustomer() {
     	customerEmailText.setVisible(false);
     	customerPhoneNumberText.setVisible(false);
     	customerCompanyText.setVisible(false);
@@ -65,6 +65,7 @@ public class JobPopUpController implements Initializable {
     }
     @FXML
     void handleSelectEquipment(ActionEvent event) {
+    	System.out.print("Easdf");
     	equipmentSerialText.setVisible(false);
     	equipmentMakeText.setVisible(false);
     	equipmentModelText.setVisible(false);
@@ -132,6 +133,13 @@ public class JobPopUpController implements Initializable {
 		}
 		return true;
 	}
+    public void populateCustomerFields(Customer customer) {
+    	customerCompanyText.setText(customer.getCustomerCompanyName());
+    	customerNameText.setText(customer.getCustomerName());
+    	customerEmailText.setText(customer.getCustomerEmail());
+    	customerPhoneNumberText.setText(String.valueOf(customer.getCustomerPhoneNumber()));
+    	creatingCustomer = false;
+    }
 		
 	public boolean validateEquipmentFields() {
 		if(! Database.validateWord(equipmentMakeText.getText())) {
@@ -148,16 +156,33 @@ public class JobPopUpController implements Initializable {
 		}
 		return true;
 	}
-    
+
+	private void populateEquipmentFields(Equipment equipment) {
+		equipmentMakeText.setText(equipment.getEquipmentMake());
+		equipmentMakeText.setDisable(true);
+		equipmentModelText.setText(equipment.getEquipmentModel());
+		equipmentModelText.setDisable(true);
+		equipmentSerialText.setText(equipment.getEquipmentSerial());
+		equipmentSerialText.setDisable(true);
+		creatingEquipment = false;
+		
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		for(Customer customer : Database.getInstance().getCustomers()) {
-			customerMenuButton.getItems().add(new CheckMenuItem(customer.getCustomerName()));
+			CheckMenuItem item = new CheckMenuItem(customer.getCustomerName());
+			item.setOnAction(e-> populateCustomerFields(customer));
+			customerMenuButton.getItems().add(item);
 		}
+		customerMenuButton.setOnAction(e -> handleSelectCustomer());
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
-			equipmentMenuButton.getItems().add(new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel()));
+			CheckMenuItem item = new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel());
+			item.setOnAction(e-> populateEquipmentFields(equipment));
+			equipmentMenuButton.getItems().add(item);
 		}
-		//customerMenuButton.setOn
+		
+		
 	}
     
 }

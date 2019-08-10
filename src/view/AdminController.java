@@ -48,7 +48,7 @@ package view;
 		@FXML
 		private ListView<Equipment> inventoryListView;
 		@FXML
-		private ListView<Job> jobsListView;
+		private ListView<Job> assignedJobsListView, unassignedJobsListView;
 		@FXML
 		private MenuButton actionMenuButton;
 		@FXML
@@ -152,7 +152,8 @@ package view;
 			ObservableList<Customer> clients = FXCollections.observableArrayList(database.getCustomers());
 			clientListView.itemsProperty().set(clients);
 			inventoryListView.itemsProperty().set(FXCollections.observableArrayList(database.getEquipment()));
-			jobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getJobs()));
+			assignedJobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getAssignedJobs()));
+			unassignedJobsListView.itemsProperty().set(FXCollections.observableArrayList(database.getAvailableJobs()));
 		}
 		
 	}
