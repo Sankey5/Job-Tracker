@@ -53,6 +53,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		
 		ObservableList<Job> availablejobs = FXCollections.observableArrayList(database.getJobs());
 		ObservableList<Job> currentjobs = FXCollections.observableArrayList(tech.getMyJobs());
+		
+		
+		
 		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
 		
 		currentJobsListView.setItems(currentjobs);
