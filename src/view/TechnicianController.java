@@ -46,41 +46,14 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@FXML
 	private TextField editField;
 	
-	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList;
+	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList, availablejobs, completedjobs;
 	
 	private Technician tech;
 	private Database database;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tech = MainController.getInstance().getSelectedTech();
-		database = Database.getInstance();
-		
-		ObservableList<Job> availablejobs = FXCollections.observableArrayList(database.getJobs());
-		ObservableList<Job> completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
-		
-		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
-		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
-		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
-		
-		for(Job temp: tech.getMyJobs()) {
-			if(temp.getPriority() == Priority.High)
-				expressJobsUnsorted.add(temp);
-			if(temp.getPriority() == Priority.Medium)
-				regularJobsUnsorted.add(temp);
-			if(temp.getPriority() == Priority.Low)
-				slowJobsUnsorted.add(temp);
-		}
-		
-		expressObservableList = FXCollections.observableArrayList(expressJobsUnsorted);
-		regularObservableList = FXCollections.observableArrayList(regularJobsUnsorted);
-		slowObservableList = FXCollections.observableArrayList(slowJobsUnsorted);
-		
-		expressJobsListView.setItems(expressObservableList);
-		regularJobsListView.setItems(regularObservableList);
-		slowJobsListView.setItems(slowObservableList);
-		availableJobsListView.setItems(availablejobs);
-		completedJobsListView.setItems(completedjobs);
+		updateJobQueues();
 		
 		if(tech.getMyJobs().size() == 0) {
 	
@@ -179,6 +152,12 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	}
 	
 	private void updateJobQueues() {
+		tech = MainController.getInstance().getSelectedTech();
+		database = Database.getInstance();
+		
+		availablejobs = FXCollections.observableArrayList(database.getJobs());
+		completedjobs = FXCollections.observableArrayList(tech.getCompletedJobs());
+		
 		ArrayList<Job> expressJobsUnsorted = new ArrayList<Job>();
 		ArrayList<Job> regularJobsUnsorted = new ArrayList<Job>();
 		ArrayList<Job> slowJobsUnsorted = new ArrayList<Job>();
@@ -199,6 +178,8 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		expressJobsListView.setItems(expressObservableList);
 		regularJobsListView.setItems(regularObservableList);
 		slowJobsListView.setItems(slowObservableList);
+		availableJobsListView.setItems(availablejobs);
+		completedJobsListView.setItems(completedjobs);
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
@@ -346,7 +327,6 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
 		tech.giveJob(current);
 		tech.getCompletedJobs().remove(current);
-		database.getJobs().add(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		
