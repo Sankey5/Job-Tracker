@@ -160,6 +160,8 @@ public class JobPopUpController implements Initializable {
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
 			equipmentMenuButton.getItems().add(new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel()));
 		}
+		
+		customerMenuButton.addEventHandler(Menu.ON_SHOWING, event -> menu.fire());;
 	}
     
 }
