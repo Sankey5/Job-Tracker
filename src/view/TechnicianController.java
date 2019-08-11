@@ -1,4 +1,3 @@
-
 package view;
 
 import java.io.IOException;
@@ -30,6 +29,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import launcher.Launcher;
 import model.Database;
+import model.Equipment;
 import model.Job;
 import model.Priority;
 import model.Technician;
@@ -38,14 +38,14 @@ import javafx.scene.control.TextArea;
 public class TechnicianController implements EventHandler<ActionEvent>, Initializable {
 
 	@FXML
-	private Button newJob;
+	private Button newJob, filterButton;;
 	@FXML
 	private ListView<Job> availableJobsListView, expressJobsListView, regularJobsListView, slowJobsListView, completedJobsListView;
 	@FXML
 	private TextArea detailsTextArea, extrasTextArea;
 	@FXML
 	private TextField editField;
-	
+	private boolean fired;
 	ObservableList<Job> expressObservableList, regularObservableList, slowObservableList, availablejobs, completedjobs;
 	
 	private Technician tech;
@@ -54,13 +54,13 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		updateJobQueues();
-		
+		fired = false;
 		if(tech.getMyJobs().size() == 0) {
 	
 		} else {
 			detailsTextArea.setText(tech.getMyJobs().get(0).toDescription());
 		}
-//		extrasTextArea.setText(tech.toExtras());
+		extrasTextArea.setText(tech.toExtras());
 		
 	}
 	
@@ -180,6 +180,9 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		slowJobsListView.setItems(slowObservableList);
 		availableJobsListView.setItems(availablejobs);
 		completedJobsListView.setItems(completedjobs);
+		
+		filterButton.setText("All Jobs");
+		fired = false;
 	}
 		
 	public void availableMenuAdd(ActionEvent event) {
@@ -194,19 +197,20 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			updateJobQueues();
 			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
 		} else {
-			detailsTextArea.appendText("\n\n\nUnable to add job!!");
+			detailsTextArea.appendText("\n\n\n"+available.getEquipment().toString().replace("\n","")+" required for this job.");
 		}
 		extrasTextArea.setText(tech.toExtras());
 	}
 	
 	public void expressMenuComplete(ActionEvent event) {
+		
 		if(expressJobsListView.getSelectionModel().isEmpty()){
 			return;
 		} 
 		
 		Job current = expressJobsListView.getSelectionModel().getSelectedItem();
 		tech.completedJob(current);
-		expressJobsListView.setItems(FXCollections.observableArrayList(tech.getMyJobs()));
+		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
 		extrasTextArea.setText(tech.toExtras());
 	}
@@ -325,7 +329,10 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 		} 
 		
 		Job current = completedJobsListView.getSelectionModel().getSelectedItem();
-		tech.giveJob(current);
+		if(! tech.giveJob(current)) {
+			detailsTextArea.appendText(tech.getName()+" is not trained to use "+ current.getEquipment());
+			return;
+		}
 		tech.getCompletedJobs().remove(current);
 		updateJobQueues();
 		completedJobsListView.setItems(FXCollections.observableArrayList(tech.getCompletedJobs()));
@@ -349,6 +356,34 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 			e.printStackTrace();
 		}
     }
+	
+	public void filterAction(ActionEvent event) {
+		ArrayList<Job> matched = new ArrayList<Job>();
+		if(fired == false) {
+			availableJobsListView.setItems(null);
+			filterButton.setText("Acceptable Jobs");
+			ArrayList<Job> jobList = database.getJobs();
+			for(int i = 0; i < jobList.size(); i++) {
+				Equipment equipment = jobList.get(i).getEquipment();
+				for(int k = 0; k < tech.getEquipmentList().size(); k++) {
+					if(equipment.compareTo(tech.getEquipmentList().get(k))) {
+						matched.add(jobList.get(i));
+					}
+				}
+				
+			}
+			
+			ObservableList<Job> matchList= FXCollections.observableArrayList(matched);
+			availableJobsListView.setItems(matchList);
+			fired = true;
+			
+		} else if(fired == true) {//if (availableJobsListView.getItems().size() < database.getJobs().size()) {
+			availableJobsListView.setItems(FXCollections.observableArrayList(database.getJobs()));
+			filterButton.setText("All Jobs");
+			fired = false;
+		}
+		
+	}
 	
 	@Override
 	public void handle(ActionEvent event) {

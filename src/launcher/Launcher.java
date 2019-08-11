@@ -29,6 +29,7 @@ import view.ViewType;
 public class Launcher extends Application{
 	
 	public static Stage stage ;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		stage = primaryStage;

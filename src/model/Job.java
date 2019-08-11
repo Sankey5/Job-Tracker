@@ -107,7 +107,8 @@ public class Job implements Serializable, Comparable{
 		String header = toString() + getId() + "\n";
 		String subject = this.customer.toString() + "\n";
 		String body = "Tool needed:" +  this.equipment.toString()
-					+ "Deadline: " + this.deadlineEntry 
+					+ "Priority: " + this.getPriority()
+					+ "\nDeadline: " + this.deadlineEntry 
                     + "\nDetails: " + this.getMemo();
 		return header + subject + body;
 	}

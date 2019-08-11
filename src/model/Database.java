@@ -141,7 +141,6 @@ public class Database implements Serializable {
 			file.close();
 			objIn.close();
 		} catch(EOFException e) {
-			e.printStackTrace();
 		} 
 		catch (FileNotFoundException e) {
 			logger.log(Level.SEVERE, "Data file could not be created default file name: "

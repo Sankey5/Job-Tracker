@@ -35,7 +35,6 @@ public class JobPopUpController implements Initializable {
     private boolean creatingCustomer, creatingEquipment;
     
     public JobPopUpController() {
-    	
     }
 
     @FXML
@@ -49,6 +48,7 @@ public class JobPopUpController implements Initializable {
     	customerNameText.setDisable(false);
     	customerNameText.clear();
     	creatingCustomer = true;
+
     }
     @FXML
     void handleNewEquipment(ActionEvent event) {
@@ -164,16 +164,17 @@ public class JobPopUpController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		for(Customer customer : Database.getInstance().getCustomers()) {
-			CheckMenuItem item = new CheckMenuItem(customer.getCustomerName());
+			MenuItem item = new MenuItem(customer.getCustomerName());
 			item.setOnAction(e-> populateCustomerFields(customer));
 			customerMenuButton.getItems().add(item);
 		}
 		
 		for(Equipment equipment : Database.getInstance().getEquipment()) {
-			CheckMenuItem item = new CheckMenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel());
+			MenuItem item = new MenuItem(equipment.getEquipmentMake()+" - "+equipment.getEquipmentModel());
 			item.setOnAction(e-> populateEquipmentFields(equipment));
 			equipmentMenuButton.getItems().add(item);
 		}
+		
 		
 		
 	}
