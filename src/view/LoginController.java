@@ -15,20 +15,14 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Screen;
 import launcher.Launcher;
-import model.Customer;
-import model.Equipment;
-import model.Job;
-import model.Technician;
 
 
 public class LoginController implements Initializable {
@@ -38,7 +32,6 @@ public class LoginController implements Initializable {
 	
 	@FXML
     private Button techButton;
-
     @FXML
     private Button adminButton;
     
@@ -55,10 +48,10 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Screen screen = Screen.getPrimary();
-		Launcher.stage.setX(0);
+		Launcher.stage.setX(-10.0);
 		Launcher.stage.setY(0);
-		Launcher.stage.setHeight(screen.getBounds().getHeight());
-		Launcher.stage.setWidth(screen.getBounds().getWidth());
+		Launcher.stage.setHeight(1080.0);
+		Launcher.stage.setWidth(1280.0);
 	}
 	
 

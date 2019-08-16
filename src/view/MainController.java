@@ -24,9 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import launcher.Launcher;
 import model.Database;
@@ -40,11 +38,7 @@ import model.Technician;
 public class MainController implements Initializable {
 	
 	private static MainController singleton;
-	
 	private Technician selectedTech;
-	
-	private ViewType view;
-	
 	private static BorderPane rootPane;
 	
 	private MainController() {
@@ -76,20 +70,10 @@ public class MainController implements Initializable {
 	
 	@FXML
 	void logoutAction(ActionEvent event) {
+			Database.getInstance().save();
 			switchView(ViewType.Login);
 		}
-/*public static Database getDatabase() {
-		return database;
-	}*/
-	/*public static void loadTechnician(Technician tech) {
-		FXMLLoader loader = null;
-		try {
-			loader = new FXMLLoader(Launcher.class.getResource("/view/TechMainView.fxml"));
-			Technician conew technicianController()
-			loader.setController();
-			
-		}
-	}*/
+
 	public static void switchView(ViewType viewType) {
 		try {
 			FXMLLoader loader = null;
@@ -115,7 +99,6 @@ public class MainController implements Initializable {
 			}
 			Parent view = loader.load();
 			rootPane.setCenter(view);
-			//Launcher.stage.sizeToScene();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -13,8 +13,6 @@
  *******************************************************************************/
 package launcher;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.testDatabase;
-import view.LoginController;
 import view.MainController;
 import view.ViewType;
 
@@ -35,18 +32,17 @@ public class Launcher extends Application{
 		stage = primaryStage;
 		MainController controller = MainController.getInstance();
 		FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/view/defaultView.fxml"));
-		//loader.setController(controller);
 		Parent root = loader.load();
 		controller.setRootPane((BorderPane) root);
 		MainController.switchView(ViewType.Login);
 		Scene scene = new Scene(root);
-		stage.setTitle("Welcome!");
+		stage.setTitle("Job Queue");
 		stage.setScene(scene);
 		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
-		testDatabase.loadSampleData();
+		//testDatabase.loadSampleData();
 		launch(args);
 	}
 
