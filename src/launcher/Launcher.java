@@ -42,7 +42,7 @@ public class Launcher extends Application{
 	}
 	
 	public static void main(String[] args) {
-		//testDatabase.loadSampleData();
+		testDatabase.loadSampleData();
 		launch(args);
 	}
 

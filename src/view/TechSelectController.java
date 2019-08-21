@@ -47,9 +47,9 @@ public class TechSelectController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Database database = Database.getInstance();
 
-		ObservableList<Technician> something = FXCollections.observableArrayList(database.getTechnicians());
+		ObservableList<Technician> techniciansObservableList = FXCollections.observableArrayList(database.getTechnicians());
 		
-		techListView.setItems(something);
+		techListView.setItems(techniciansObservableList);
 		
 	}
 	
@@ -59,6 +59,8 @@ public class TechSelectController implements Initializable{
 		if(event.getClickCount() < 2 || techListView.getSelectionModel().isEmpty()) {
 			return;
 		}
+		
+		Database.getInstance().load();
 		
 		MainController.getInstance().setSelectedTech(techListView.getSelectionModel().getSelectedItem());
 		MainController.switchView(ViewType.Technician);

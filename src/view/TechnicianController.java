@@ -66,11 +66,13 @@ public class TechnicianController implements EventHandler<ActionEvent>, Initiali
 	
 	@FXML
 	public void logoutAction(ActionEvent event) {
+		database.save();
 		MainController.switchView(ViewType.Login);
 	}
 	
 	@FXML
 	public void backAction(ActionEvent event) {
+		database.save();
 		MainController.switchView(ViewType.TechSelect);
 	}
 	

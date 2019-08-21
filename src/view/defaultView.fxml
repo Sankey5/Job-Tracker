@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
 
 <BorderPane fx:id="parentNode" stylesheets="@../stylesheets/mainCSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+   <top>
+      <HBox prefHeight="44.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

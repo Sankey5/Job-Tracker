@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.stage.Screen;
 import launcher.Launcher;
@@ -47,11 +48,11 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Screen screen = Screen.getPrimary();
+		Rectangle2D screen = Screen.getPrimary().getBounds();
 		Launcher.stage.setX(-10.0);
 		Launcher.stage.setY(0);
-		Launcher.stage.setHeight(1080.0);
-		Launcher.stage.setWidth(1280.0);
+		Launcher.stage.setHeight(screen.getHeight());
+		Launcher.stage.setWidth(screen.getWidth());
 	}
 	
 
